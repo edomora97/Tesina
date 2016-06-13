@@ -1,0 +1,31 @@
+Come appena preannunciato il tempo di una partita viene semplicemente memorizzato come numero intero secondo la seguente convenzione:
+
+\[
+day
+\left\{
+\begin{aligned}
+\text{se}\ day = 0 						&\Rightarrow \text{arrivo al villaggio} \\
+\text{se}\ day\ \text{è \emph{pari}}		&\Rightarrow \text{giorno}\ \frac{day}{2}+1 \\
+\text{se}\ day\ \text{è \emph{dispari}}	&\Rightarrow \text{notte}\ \frac{day}{2}+1
+\end{aligned}
+\right.
+\]
+
+Il valore di \emph{day} viene memorizzato nella tabella game in quanto si tratta del giorno della partita.
+
+Sono qui riportati degli esempi dei valori che può assumere \emph{day}:
+
+\begin{tabular}{|c|c|}
+	\hline
+	\textbf{day} & \textbf{valore} \\
+	\hline
+	0 & Arrivo al villaggio \\
+	1 & Notte 1 \\
+	2 & Giorno 2 \\
+	3 & Notte 2 \\
+	4 & Giorno 3 \\
+	5 & Notte 3 \\
+	6 & Giorno 4 \\
+	7 & Notte 4 \\
+	\hline
+\end{tabular}

@@ -1,0 +1,74 @@
+Le funzioni delle API ritorneranno un codice numerico identificativo del messaggio di errore/successo che la relativa funzione ha avuto. 
+
+I codici sono divisi in gruppi di decine: le unità sono un numero progressivo che identifica la sezione caratterizzata dalle altre cifre del codice.
+
+\resizebox{\textwidth}{!} {
+\begin{tabular}{|rl|l|}
+\hline
+\textbf{\#} & \textbf{Abbreviazione} & \textbf{Descrizione} \\
+\hline
+\apicode{1}{NotLoggedIn}{L'utente non è connesso e non può accedere a questa risorsa}
+\apicode{2}{FatalError}{Un errore grave interno al server può aver compromesso la partita}
+\apicode{3}{AccessDenied}{L'utente non ha i permessi per accedere alla risorsa richiesta}
+\apicode{4}{NotFound}{La risorsa richiesta non è stata trovata}
+\apicode{5}{MissingParameter}{Non è stato specificato un parametro richiesto}
+\apicode{6}{MalformedParameter}{Uno dei parametri non ha un formato corretto o è invalido}
+\apicode{7}{Done}{La richiesta è stata completata con successo}
+\apicode{8}{Fail}{La richiesta non è stata completata a causa di un errore}
+\apicode{9}{Found}{La risorsa è stata trovata}
+\hline
+\apicode{101}{LoginAlreadyDone}{Utente già connesso}
+\hline
+\apicode{130}{JoinDoneGameStarted}{L'utente è entrato nella partita e questa è iniziata}
+\apicode{131}{JoinDoneGameWaiting}{L'utente è entrato nella partita ma questa è in attesa}
+\apicode{132}{JoinFailedAlreadyIn}{L'utente era già entrato nella partita}
+\apicode{133}{JoinFailedGameClose}{Non sono permessi ingressi}
+\apicode{134}{JoinFailedGameFull}{L'utente non è entrato nella partita perché è piena}
+\apicode{135}{JoinFailedGamesEnded}{La partità era finita, il giocatore non è entrato}
+\hline
+\apicode{143}{NewGameAlreadyRunning}{Una partita nella stanza è ancora in corso}
+\apicode{144}{NewGameAlreadyExists}{Esiste già una partita con questo nome nella stanza}
+\hline
+\apicode{152}{StartNotInSetup}{La partita non è in fase di setup}
+\apicode{153}{StartWithoutLupus}{La partita non contiene lupi}
+\hline
+\apicode{160}{VoteDoneNextDay}{La votazione è stata effettuata e la partita è avanzata}
+\apicode{161}{VoteDoneWaiting}{La votazione è stata effettuata e la partita è in attesa}
+\apicode{162}{VoteDoneGameEnd}{La votazione è stata effettuata e la partita è terminata}
+\apicode{164}{VoteGameNotRunning}{La partita non è in corso}
+\apicode{166}{VoteNotValid}{Il voto dell'utente non è valido}
+\apicode{167}{VoteNotNeeded}{L'utente non deve votare o ha già votato}
+\hline
+\apicode{172}{NewRoomRoomsEnded}{L'utente ha finito il numero di stanze che può creare}
+\apicode{173}{NewRoomPrivateRoomsEnded}{L'utente ha finito il numero di stanze private che può creare}
+\apicode{174}{NewRoomAlreadyExists}{Esiste già una stanza con questo nome}
+\hline
+\apicode{200}{CheckRoomNameAccepted}{Il nome della stanza è corretto ed accettabile}
+\apicode{203}{CheckRoomNameExisting}{Il nome della stanza è già stato usato}
+\hline
+\apicode{210}{CheckRoomDescrAccepted}{La descrizione della stanza è accettabile}
+\hline
+\apicode{220}{CheckGameNameAccepted}{Il nome della partita è corretto ed accettabile}
+\apicode{224}{CheckRoomNameExisting}{Il nome della partita è già stato usato in questa stanza}
+\hline
+\apicode{230}{CheckGameDescrAccepted}{La descrizione della partita è accettabile}
+\hline
+\apicode{242}{SetupNotInSetup}{La partita non è in fase di setup}
+\hline
+\apicode{252}{SignupAlreadyExists}{Non è possibile registrare un utente con questo \texttt{username}}
+\hline
+\apicode{263}{ChatUserNotInGame}{L'utente non è nella partita}
+\apicode{264}{ChatInvalidUser}{Il destinatario del messaggio non è valido}
+\hline
+\apicode{270}{GameTerminated}{La partita è stata terminata dall'amministratore}
+\apicode{272}{GameTermNotRunning}{La partita non era in corso}
+\hline
+\apicode{282}{PlayerKickNotValidState}{La partita non è in uno stato valido per espellere giocatori}
+\hline
+\apicode{290}{ACLAlreadyPresent}{La regola ACL era già presente nell'elenco}
+\apicode{291}{ACLCannotRemoveAdmin}{Non è possibile rimuovere l'admin della stanza dall'ACL}
+\hline
+\end{tabular}
+}
+
+Non tutte le decine sono state usate in quanto, durante lo sviluppo, alcuni codici sono stati rimossi.

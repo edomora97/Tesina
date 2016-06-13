@@ -1,8 +1,11 @@
-\documentclass[b5paper,10pt,twoside,cucitura]{toptesi}
+\documentclass[10pt,twoside,cucitura]{toptesi}
 \usepackage{lipsum}
 \usepackage{hyperref}
 \usepackage{tabularx}
 \usepackage{framed}
+\usepackage{amsmath}
+\usepackage{svg}
+\usepackage{graphicx}
 
 \hypersetup{%
     pdfpagemode={UseOutlines},
@@ -62,22 +65,40 @@ ciao mondo
 \input{sezioni/03.analisi.tex}
 
 \section{Stuttura dei componenti}
-% Definizione di stanza, partita ecc...
+\input{sezioni/04.componenti.tex}
 
 \section{Progettazione della base di dati}
-\subsection{Schema concettuale}
-\subsection{Schema logico}
-\subsection{Descrizione delle entità}
-\subsection{Dizionario degli attributi}
+\input{sezioni/05.database.tex}
 
-\section{Componenti del gioco}
-% descrizione del server e delle varie teconologie usate per sviluppare
+\subsection{Schema concettuale}
+\input{sezioni/06.ER.tex}
+
+\subsection{Schema logico}
+\input{sezioni/07.schemaLogico.tex}
+
+\subsection{Descrizione delle entità}
+\input{sezioni/08.entita.tex}
+
+\subsection{Dizionario degli attributi}
+\input{sezioni/09.attributi.tex}
 
 \section{Codici utilizzati}
+\input{sezioni/10.codici.tex}
+
 \subsection{Tempo del gioco}
+\input{sezioni/11.tempo.tex}
+
 \subsection{Stato della partita}
+\input{sezioni/12.statoPartita.tex}
+
 \subsection{Codici di risposta delle API}
+\input{sezioni/13.statoAPI.tex}
+
 \subsection{Codici degli eventi}
+\input{sezioni/14.statoEventi.tex}
+
+\subsection{Visibilità della stanza}
+\input{sezioni/15.visibilita.tex}
 
 \chapter{Implementazione}
 
@@ -107,5 +128,6 @@ ciao mondo
 \subsection{Una tabella key-value}
 
 \section{Soluzione proposta}
+\label{sec:soluzione}
 
 \end{document}

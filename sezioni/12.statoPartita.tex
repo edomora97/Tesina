@@ -1,0 +1,65 @@
+Ogni partita deve trovarsi in uno stato preciso che indica le condizioni della partita. In particolare è necessario sapere se la partita è già iniziata, se è finita, se ha vinto una certa squadra, se è stata interrotta ecc...
+
+Per rendere più chiaro il valore di questi codici i vari stati delle partite sono stati divisi in alcune fasi: Pre-Partita, In-Partita, Terminata-OK, Terminata-Errore.
+
+\subsubsection{Fase Pre-Partita}
+Questa fase è presente solo prima dell'avvio della partita e serve per salvare ed aggiustare i dettagli della partita, come il numero di giocatori, di ruoli, la descrizione, ecc\dots
+
+Questa fase è identificata da codici nell'intervallo:
+\[
+0 \le x < 100
+\]
+
+I codici riconosciuti sono:
+\begin{itemize}
+	\item \gamestatus{0}{Setup}{Impostazione della partita}
+\end{itemize}
+
+
+\subsubsection{Fase In-Partita}
+Questa fase è presente poco prima dell'inizio della partita e durante tutto il corso della partita. 
+
+Viene identificata da codici nell'intervallo:
+\[
+100 \le x < 200
+\]
+
+I codici riconosciuti sono:
+\begin{itemize}
+	\item \gamestatus{100}{NotStarted}{La partita è attiva e i giocatori possono iniziare ad entrare}
+	\item \gamestatus{101}{Running}{La partita è in corso e i giocatori non possono più entrare}
+\end{itemize}
+
+
+\subsubsection{Fase terminata in modo corretto}
+Questa fase si verifica quando la partita termina in modo corretto e viene scelta una squadra vincitrice.
+
+I codici che la identificano sono compresi nell'intervallo:
+\[
+200 \le x < 300
+\]
+
+I codici riconosciuti sono:
+\begin{itemize}
+	\item \gamestatus{200\,+\,y}{Win$y$}{La partita è terminata e ha vinto la squadra $y\ (0\le y < 99)$}
+	\item \gamestatus{299}{DeadWin}{La partita è terminata perché tutti i giocatori sono morti}
+\end{itemize}
+
+
+
+\subsubsection{Fase terminata in modo inaspettato}
+Questa fase si verifica quando la partita viene interrotta prima della sua normale fine. In questo caso non viene designato alcun vincitore.
+
+I codici che identificano questa fase sono compresi dall'intervallo:
+\[
+300 \le x < 400
+\]
+
+I codici riconosciuti sono:
+\begin{itemize}
+	\item \gamestatus{300}{TermByAdmin}{L'amministratore della stanza ha fatto terminare la partita}
+	\item \gamestatus{301}{TermBySolitude}{Un numero eccessivo di giocatori hanno abbandonato la partita}
+	\item \gamestatus{302}{TermByVote}{\'E stato raggiunto il \emph{quorum} per terminare la partita}
+	\item \gamestatus{303}{TermByBug}{Un errore interno del server ha fatto terminare la partita per preservare l'integrità del server}
+	\item \gamestatus{304}{TermByGameMaster}{Il GameMaster ha deciso di terminare la partita}
+\end{itemize}

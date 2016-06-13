@@ -1,0 +1,35 @@
+Gli eventi che si verificano nella partita vengono memorizzati per essere visualizzati nel giornale del villaggio. Questi eventi vengono distinti in base ad un codice numerico che identifica il tipo di evento. Ad ogni tipologia di evento corrispondono alcuni attributi specifici, come per esempio lo username del giocatore ucciso o dell'assassino o una lista degli username dei giocatori visti.
+
+\begin{itemize}
+\item \eventcode{0}{GameStart}{La partita è appena iniziata}{
+\texttt{players} & Vettore con gli \texttt{username} dei giocatori nella partita \\
+\texttt{start}   & Timestamp dell'ora dell'inizio della partita
+}
+\item \eventcode{1}{Death}{Un giocatore è stato ucciso o è stato trovato morto}{
+\texttt{dead}	& Username del giocatore morto \\
+\texttt{cause}	& Causa della morte \\
+\texttt{actor}	& Causante della morte (killer)
+}
+\item \eventcode{2}{MediumAction}{Un medium ha guardato un morto}{
+\texttt{medium}	& Username del medium \\
+\texttt{seen}	& Username del giocatore guardato \\
+\texttt{mana}	& Mana del giocatore guardato
+}
+\item \eventcode{3}{VeggenteAction}{Un veggente ha guardato un vivo}{
+\texttt{medium}	& Username del veggente \\
+\texttt{seen}	& Username del giocatore guardato \\
+\texttt{mana}	& Mana del giocatore guardato
+}
+\item \eventcode{4}{PaparazzoAction}{Un paparazzo ha fotografato un giocatore}{
+\texttt{paparazzo}	& Username del paparazzo \\
+\texttt{seen}	    & Username del giocatore guardato \\
+\texttt{visitors}   & Lista dei giocatori che hanno fatto visita al giocatore
+}
+\item \eventcode{5}{BecchinoAction}{Un becchino ha resuscitato un giocatore}{
+\texttt{becchino}	& Username del becchino \\
+\texttt{dead}	    & Username del giocatore resuscitato
+}
+\item \eventcode{6}{PlayerKicked}{Un giocatore è stato espulso dalla partita}{
+\texttt{kicked}	& Username del giocatore espulso
+}
+\end{itemize}

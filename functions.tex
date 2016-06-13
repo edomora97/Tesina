@@ -12,3 +12,22 @@
 	#9
 \end{framed}
 }
+
+\newcommand{\gamestatus}[3]{
+	\textbf{#1}: \textbf{\texttt{#2}}$\quad$ #3
+}
+
+\newcommand{\apicode}[3]{
+	\texttt{#1} & \texttt{#2} & #3 \\
+}
+
+\newcommand{\eventcode}[4]{
+	\textbf{#1}: \textbf{\texttt{#2}}$\quad$ #3 
+	\vspace{0.1cm}
+	\\
+	Dati registrati dell'evento:\\
+	\begin{tabular}{ll}
+		#4
+	\end{tabular}
+	\vspace{0.2cm}
+}
