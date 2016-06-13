@@ -1,1 +1,14 @@
-$\rightarrow$ inserire schema logico $\leftarrow$
+Vengono qui riportate, in modo sintetico le definizioni di tutte le tabelle che compongono la base di dati. Le chiavi primarie sono \underline{sottolineate}, le chiavi esterne sono in \emph{corsivo} con il relativo riferimento; i campi ristrutturati con NoSQL hanno un asterisco ($^*$).
+
+\begin{itemize}
+	\item \texttt{user(\underline{id\_user}, username, password, level, karma, name, surname)}
+	\item \texttt{room(\underline{id\_room}, \emph{id\_admin}\extkey{user.id\_user}, room\_name, room\_descr, private)}
+	\item \texttt{game(\underline{id\_game}, \emph{id\_room}\extkey{room.id\_room}, day, status, game\_name, game\_descr, \\num\_players, gen\_info$^*$)}
+	\item \texttt{player(\underline{id\_role}, \emph{id\_game}\extkey{game.id\_game}, \emph{id\_user}\extkey{user.id\_user}, role, status, data$^*$, \\chat\_info$^*$)}
+	\item \texttt{chat(\underline{id\_chat}, \emph{id\_game}\extkey{game.id\_game}, \emph{id\_user\_from}\extkey{user.id\_user}, dest, group, text, \\timestamp)}
+	\item \texttt{vote(\underline{id\_vote}, \emph{id\_game}\extkey{game.id\_game}, \emph{id\_user}\extkey{user.id\_user}, vote, day)}
+	\item \texttt{event(\underline{id\_event}, \emph{id\_game}\extkey{game.id\_game},  event\_code, event\_data$^*$, day)}
+	\item \texttt{notification(\underline{id\_notification}, \emph{id\_user}\extkey{user.id\_user}, date, message, link, hidden)}
+	\item \texttt{achievement(\underline{id\_achievement}, \emph{id\_user}\extkey{user.id\_user}, achievement\_name, unlock\_date)}
+	\item \texttt{room\_acl(\underline{\emph{id\_room}}\extkey{room.id\_room}, \underline{\emph{id\_user}}\extkey{user.id\_user})}
+\end{itemize}
