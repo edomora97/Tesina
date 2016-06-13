@@ -1,8 +1,8 @@
-% !TEX encoding = IsoLatin
-
 \documentclass[b5paper,10pt,twoside,cucitura]{toptesi}
 \usepackage{lipsum}
 \usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{framed}
 
 \hypersetup{%
     pdfpagemode={UseOutlines},
@@ -28,23 +28,84 @@
 \sedutadilaurea{\textsc{Anno~scolastico} 2015-2016}
 \logosede{lion}
 
-\begin{document}\errorcontextlines=9% debugging
+\input{functions.tex}
+
+\begin{document}
 
 \frontespizio
 
 \sommario
-\input{chapter0/sommario.tex}
-
+\input{sommario.tex}
 
 \indici
 
 \mainmatter
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  PARTE UNO                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{Lupus in Tabula}
+
+
 \chapter{Introduzione generale}
 
 \section{Descrizione del gioco}
+ciao mondo
+\input{sezioni/01.descrizione.tex}
 
+\section{Ruoli}
+\input{sezioni/02.ruoli.tex}
 
+\chapter{Analisi}
+
+\section{Analisi del problema}
+\input{sezioni/03.analisi.tex}
+
+\section{Stuttura dei componenti}
+% Definizione di stanza, partita ecc...
+
+\section{Progettazione della base di dati}
+\subsection{Schema concettuale}
+\subsection{Schema logico}
+\subsection{Descrizione delle entità}
+\subsection{Dizionario degli attributi}
+
+\section{Componenti del gioco}
+% descrizione del server e delle varie teconologie usate per sviluppare
+
+\section{Codici utilizzati}
+\subsection{Tempo del gioco}
+\subsection{Stato della partita}
+\subsection{Codici di risposta delle API}
+\subsection{Codici degli eventi}
+
+\chapter{Implementazione}
+
+\section{Tecnologie utilizzate}
+\section{Pagine web}
+\section{Webservice REST}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  PARTE DUE                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Limiti della 1NF}
+
+\chapter{Introduzione alle forme normali}
+
+\section{Prima forma normale}
+\section{Seconda forma normale}
+\section{Terza forma normale}
+\section{Forma normale di Boyce-Codd}
+\section{Quarta e Quinta forma normale}
+
+\chapter{Problematiche con la 1NF}
+
+\section{Contesto del problema}
+
+\section{Prime soluzioni parziali}
+\subsection{Una tabella per ruolo}
+\subsection{Una tabella key-value}
+
+\section{Soluzione proposta}
 
 \end{document}

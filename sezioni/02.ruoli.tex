@@ -1,0 +1,37 @@
+Ad ogni giocatore viene assegnato dal sistema uno ed un solo ruolo, quindi il giocatore saprà anche la sua fazione e il suo mana. 
+
+Ogni ruolo, oltre al nome ha anche alcune proprietà aggiuntive:
+
+\begin{itemize}
+	\item Mana: indica se il giocatore agirà come malintenzionato oppure come una brava persona
+	\item Nome identificativo: nome unico che identifica il ruolo
+	\item Priorità: serve per stabilire un ordine nell'esecuzione delle azioni
+	\item Debug: alcuni ruoli sono accessibili solo dagli sviluppatori e sono marcati come \emph{debug}
+	\item Enabled: È possibile disattivare alcuni ruoli con questa proprietà
+	\item Chat: alcuni ruoli hanno dei canali di comunicazione dedicati
+	\item Gen*: parametri aggiuntivi per la generazione automatica dei ruoli, come numero minimo e massimo di occorrenze del ruolo, probabilità, ecc...
+\end{itemize}
+
+\subsection{Ruoli comuni}
+
+I ruoli che normalmente vengono usati in una partita di Lupus in Tabula sono:
+
+\role{Lupo}{Lupo}{Cattivo}{Lupi}{100}{no}{sì}{Lupi}{Durante la notte i \emph{lupi} votano chi eliminare, se almeno il 50\%+1 dei \emph{lupi} vivi votano la stessa persona, questa è una candidata a morire}
+
+\role{Guardia}{Guardia}{Buono}{Contadini}{10000}{no}{si}{}{Durante la notte la \emph{guardia} può scegliere di proteggere una persona, se i \emph{lupi} quella notte decidessero di ucciderla, essa non muore}
+
+\role{Medium}{Medium}{Buono}{Contadini}{150}{no}{si}{}{Il \emph{medium} durante la notte può scegliere di guardare un giocatore morto, lui saprà se quel giocatore aveva un mana buono o cattivo}
+
+\role{Paparazzo}{Paparazzo}{Buono}{Contadini}{1000}{no}{si}{}{Il \emph{paparazzo} durante la notte sceglie una persona da pedinare, vengono riportati sul giornale della mattina seguente tutti i giocatori che hanno visitato il personaggio \textsl{paparazzato}}
+
+\role{Criceto mannaro}{Criceto mannaro}{Cattivo}{Criceti}{10000}{no}{si}{}{\'E un giocatore normale, senza poteri speciali. Se la partita termina e lui è ancora vivo allora vince solo lui e non la sua fazione}
+
+\role{Assassino}{Assassino}{Cattivo}{Contadini}{10}{no}{si}{}{L'\emph{assassino} una sola volta nella partita può scegliere una persona e ucciderla}
+
+\role{Massone}{Massone}{Buono}{Contadini}{10000}{no}{si}{Massoni}{I \emph{massoni} non hanno poteri però hanno una chat dedicata e quindi si conoscono tra loro}
+
+\role{Contadino}{Contadino}{Buono}{Contadini}{10000}{no}{si}{}{I \emph{contadini} non hanno poteri\dots}
+
+\role{Pastore}{Pastore}{Buono}{Contadini}{50}{sì}{si}{}{I \emph{pastori} possono scegliere di sacrificare delle pecore per salvare dei giocatori dalle grinfie dei lupi}
+
+\role{Sindaco}{Sindaco}{Buono}{Contadini}{10000}{no}{si}{}{Il \emph{sindaco} è un contadino che non può essere messo al rogo nella votazione diurn}

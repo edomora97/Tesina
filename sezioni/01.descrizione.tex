@@ -1,0 +1,24 @@
+Lupus in Tabula è un gioco di ruolo per, normalmente, 7 o più giocatori. Il narratore, che giocando senza computer, è un giocatore speciale che racconta una storia. La storia viene sviluppata da tutti i giocatori che, compiendo delle azioni, comportano dei cambiamenti alla vicenda, per esempio uccidendo dei personaggi o facendoli risorgere.
+
+I giocatori sono divisi in due o più gruppi, esistono sempre le fazioni dei \emph{lupi} e dei \emph{contadini} alle quali può aggiungersi quella dei \emph{criceti mannari} ed altre. Quando la partita finisce solo una di queste squadre vince.
+
+Lo scopo della squadra dei \emph{lupi} è quello di sbranare tutti gli altri giocatori, mentre quello dei \emph{contadini} è di individuare ed uccidere tutti i \emph{lupi}.
+
+La partita si alterna di giorni e di notti, durante ogni notte tutta la squadra dei lupi deve scegliere un bersaglio (solitamente un contadino) che quella notte verrà sbranato. Durante il giorno, invece, ogni giocatore deve votare chi, secondo lui, mandare al rogo. Questo è l'unico modo per i contadini di uccidere i vari lupi che si aggirano nel villaggio. A questa votazione partecipano anche i lupi che cercheranno ovviamente di non farsi votare.
+
+Per rendere il gioco più dinamico vengono inseriti tra i giocatori alcuni ruoli speciali. Per esempio un \emph{veggente} è un contadino che, durante la notte, può scegliere un giocatore vivo e, tramite consultazione della palla di cristallo, sapere se ha un'anima buona oppure cattiva. Ogni ruolo infatti, oltre ad essere di una certa squadra, ha anche delle caratteristiche extra come il \emph{mana}, che può essere buono oppure cattivo. Normalmente (ma non necessariamente) i giocatori nella squadra dei lupi hanno mana cattivo mentre quelli nella squadra dei contadini ce l'hanno buono.
+
+Ogni giocatore, in generale, conosce solo il proprio ruolo e deve dedurre quello degli altri giocatori; ci possono essere dei casi in cui qualche giocatore conosce il ruolo esatto di qualcun altro. Per esempio ogni lupo conosce esattamente quali sono i suoi compagni di squadra.
+
+Quanto un giocatore muore in una partita normale è il narratore ad annunciarlo, in questa implementazione è presente un giornale nel quale viene scritto il nome dei giocatori che sono morti.
+
+Affinchè una partita termini correttamente deve verificarsi alemno una delle seguenti condizioni:
+
+\begin{itemize}
+	\item Tutti i giocatori sono morti
+	\item Almeno una fazione ha vinto
+	\begin{itemize}
+		\item Lupi: Il numero di lupi è maggiore o uguale al numero di contadini
+		\item Contadini: Il numero di lupi è zero
+	\end{itemize}
+\end{itemize}
