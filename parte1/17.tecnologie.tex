@@ -1,0 +1,21 @@
+Essendo questa un'applicazione scritta utilizzando il linguaggio \texttt{PHP} è necessario che sia installato un server web per la ricezione delle richieste \texttt{HTTP}. Per semplificare lo sviluppo di alcune parti del programma sono state usate delle tecologie intermedie. Per esempio per lo sviluppo della parte grafica, quindi il codice \texttt{CSS}, è stato usato il linguaggio \texttt{SASS}, un'estensione del CSS che aggiunge delle utili funzionalità come la possibilità di usare variabili o ereditarietà delle classi di stile.
+
+I fogli di stile hanno quindi bisogno di essere compilati nei comuni file \texttt{CSS} attraverso il programma \texttt{scss}, che quindi è una dipendenza per lo sviluppo. Nel repository del progetto vengono sempre mantenuti anche i file \texttt{.css} già compilati per alleggerire la fare di installazione.
+
+A causa di alcune funzioni utilizzate la versione minima richiesta di PHP è la 5.4.0, quella consigliata è la 5.5.0. Alcune funzionalità come l'hashing sicuro della password richiedono che il server PHP supporti la funzione \texttt{ctypt} che potrebbe essere necessario abilitare manualmente.
+
+Utilizzando PHP in versione minore della 5.5.0 si rende impossibile l'utilizzo di queste funzionalità:
+
+\begin{itemize}
+	\item L'hashing sicuro delle password attraverso \texttt{password\_hash} e \texttt{password\_verify}
+\end{itemize}
+
+È possibile utilizzare anche PHP 7 se il sistema lo supporta.
+
+Come web server è possibile utilizzare \texttt{apache2} oppure \texttt{nginx} con \texttt{php-fpm}. All'interno del repository sono presenti alcuni esempi di configurazione per i due web-server. È possibile utilizzare anche un qualunque altro server web a patto che supporti l'interazione con \texttt{PHP} (che attraverso \texttt{cgi}) e il \emph{rewrite} degli url. In \texttt{apache2} potrebbe essere necessario abilitare il relativo modulo (\texttt{mod\_rewrite}) ed utilizzarlo all'interno della configurazione (\texttt{apache2.conf} o relativo file in \texttt{sites-available}) oppure tramite il file \texttt{.htaccess} presente come esempio. \texttt{nginx} non necessità di moduli esterni per il rewrite degli indirizzi ma è necessario installare \texttt{php-fpm} a parte per usare il \texttt{PHP}.
+
+Come \texttt{DBMS} è stato usato \texttt{MySQL} attraverso la libreria \texttt{PDO} di PHP. Potrebbe essere necessario abilitare questa estensione all'interno del file \texttt{php.ini}. Teoricamente dovrebbe essere possibile usare qualunque DBMS supportato da PDO ma a causa delle diversità tra i vari dialietti SQL, l'unico suppportato è MySQL. Una qualunque versione di MySQL dovrebbe andare bene, non sono state utilizzate funzionalità recenti. All'interno del repository è presente un file \texttt{.sql} per importare le varie tabelle che compongono il database.
+
+Oltre al semplice DB relazionale è stato utilizzato anche un database NoSQL. Tra le varie possibilità è stato scelto \texttt{MongoDB}, dato che i dati memorizzati sono dei documenti \texttt{JSON}. È necessario installare nel sistema anche un server di mongo, anche se questa dipendenza è opzionale. Il sistema è infatti in grado di funzionare anche senza, a patto di infrangere la prima forma normale. Per un approfondimento fare riferimento a [\ref{sec:soluzione}]. 
+
+L'interfaccia del PHP per mongo proviene da una libreria esterna, installata tramite \texttt{composer}, un \emph{package manager} per le dipendenze in PHP. È quindi necessario ``installare'' composer, processo molto facile che prevede di scaricare il file \texttt{phar} da \url{https://getcomposer.org/download/}, inserirlo nella root del progetto ed eseguire nel terminale \texttt{php composer.phar update}. La versione corretta delle librerie verrà scaricata ed inserita in \texttt{vendor/}.

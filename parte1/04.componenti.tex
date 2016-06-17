@@ -16,19 +16,46 @@ Per porter usare le funzionalità in beta è necessario possedere un livello suf
 
 Il livello di un utente è visibile nella pagina dell'utente e in ogni partita viene evidenziato. I possibili livelli sono:
 
-\begin{tabular}{|c|c|c|c|c|c|c|}
-	\hline
-	& \textbf{Nome} & \textbf{Karma} & \textbf{Partite parallele} & \textbf{Stanze} & \textbf{Stanze private} & \textbf{BETA} \\
-	\hline
-	1 & Neofita 	 & 0    &   3 &   1 &   0 & no \\
-	2 & Principiante & 25   &   5 &   1 &   0 & no \\
-	3 & Gamer        & 50   &   5 &   3 &   1 & no \\
-	4 & Esperto      & 100  &   5 &   5 &   3 & no \\
-	5 & Maestro      & 200  &   7 &   5 &   5 & no \\
-	6 & ProGamer     & 500  &  10 &  10 &   5 & no \\
-	7 & Stratega     & 2000 &  15 &  10 &  10 & si \\
-	8 & Generale     & 5000 &  50 & 100 &  10 & si \\
-	9 & Guru         & 10000& 100 & 100 & 100 & si \\
-	10 & GameMaster   & $\infty$ & 1000 & 1000 & 1000 & si \\
-	\hline
-\end{tabular}
+\begin{table}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		& \textbf{Nome} & \textbf{Karma} & \textbf{Partite parallele} & \textbf{Stanze} & \textbf{Stanze private} & \textbf{BETA} \\
+		\hline
+		1 & Neofita 	 & 0    &   3 &   1 &   0 & no \\
+		2 & Principiante & 25   &   5 &   1 &   0 & no \\
+		3 & Gamer        & 50   &   5 &   3 &   1 & no \\
+		4 & Esperto      & 100  &   5 &   5 &   3 & no \\
+		5 & Maestro      & 200  &   7 &   5 &   5 & no \\
+		6 & ProGamer     & 500  &  10 &  10 &   5 & no \\
+		7 & Stratega     & 2000 &  15 &  10 &  10 & si \\
+		8 & Generale     & 5000 &  50 & 100 &  10 & si \\
+		9 & Guru         & 10000& 100 & 100 & 100 & si \\
+		10 & GameMaster   & $\infty$ & 1000 & 1000 & 1000 & si \\
+		\hline
+	\end{tabular}
+	\caption{Livelli degli utenti}
+	\label{tab:livelli}
+\end{table}
+
+Giocando è anche possibile sbloccare degli obiettivi che arricchiscono il profilo del giocatore, un badge verrà infatti visualizzato nella pagina dell'utente appena compie un'azione memorabile. Il valore di \emph{difficoltà} serve per ordinare gli obiettivi, non necessariamente indica la difficoltà.
+
+\begin{table}
+	\centering
+	\begin{tabular}{|L{3cm}|L{4cm}|L{5.6cm}|C{1.7cm}|}
+		\hline
+		\textbf{Codice} & \textbf{Nome} & \textbf{Descrizione} & \textbf{Difficoltà} \\
+		\hline
+		AtLeast5Games & Appena iniziato & Gioca almeno 5 partite & 10 \\
+		AtLeast20Games & Iniziamo a ragionare... & Gioca almeno 20 partite & 11 \\
+		AtLeast50Games & Esperto del mestiere & Gioca almeno 50 partite & 12 \\
+		AtLeast100Games & Saggio del villaggio & Gioca almeno 100 partite & 13 \\
+		
+		AtLeast5Wins & Primi successi & Vinci almeno 5 partite & 20 \\
+		AtLeast20Wins & Hai capito le regole & Vinci almeno 20 partite & 21 \\
+		AtLeast50Wins & Pericolo pubblico & Vinci almeno 50 partite & 22 \\
+		AtLeast100Wins & Stratega professionista & Vinci almeno 100 partite & 23 \\
+		\hline
+	\end{tabular}
+	\caption{Obiettivi sbloccabili}
+	\label{tab:obiettivi}
+\end{table}

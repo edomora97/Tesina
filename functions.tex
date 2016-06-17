@@ -7,7 +7,6 @@
 		Mana		& #3 & Enabled		& #7 \\
 		Squadra		& #4 & Chat			& #8 \\
 	\end{tabularx}
-	%\vspace*{0.07cm}
 	\\
 	#9
 \end{framed}
@@ -34,4 +33,22 @@
 
 \newcommand{\extkey}[1]{%
 	$^{\text{#1}}$%
+}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newcommand{\attributi}[2]{
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|L{2.5cm}|C{1.3cm}|L{2.6cm}|L{6cm}|}
+			\hline
+			\textbf{Attributo} & \textbf{Vincoli} & \textbf{Dominio} & \textbf{Descrizione} \\
+			\hline
+			#2
+			\hline
+		\end{tabular}
+		\caption{Attributi della tabella \texttt{#1}}
+	\end{table}
 }

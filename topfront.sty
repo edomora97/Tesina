@@ -206,7 +206,7 @@
 \begingroup
       \def\ps@myheadings{\let\@mkboth\markboth
       \def\@oddhead{\vbox{%
-      \hbox to \hsize{\hfill {\LARGE \@ateneo}\hfill}%
+      \hbox to \hsize{\hfill {\huge \@ateneo}\hfill}%
       \ifclassica
             \hbox to \hsize{\hfil\vrule\@width\z@
         \@height2ex\vrule\@height1.4\p@\@depth-\p@\@width50mm\hfil}%
@@ -238,7 +238,7 @@
             \large \@phdschool\par\medskip
       \else
             \unless\ifx\@faculty\empty
-             \LARGE\ifx\@facnumber\empty\else\@facnumber\space\fi
+             \huge\ifx\@facnumber\empty\else\@facnumber\space\fi
              \@faculty\@facname\par\medskip
             \fi%
       \fi
@@ -254,7 +254,7 @@
       \end{center}
       \vfill
       \begin{center}
-        \LARGE
+        \huge
         \ifdottorato
             \@dissertazione%
         \else
@@ -270,12 +270,12 @@
       \end{center}
       \vfill
       \begin{center}
-        {\huge\bfseries \baselineskip=0.95em plus 1pt
+        {\Huge\bfseries \baselineskip=0.95em plus 1pt
                 \@title \par}
       \end{center}
       \ifx\@subtitle\empty \else
             \begin{center}%
-              \large\textrm{\@subtitle}\par
+              \LARGE\textrm{\@subtitle}\par
             \end{center}%
       \fi
       \ifclassica
@@ -322,7 +322,7 @@
             \iffemminile
                   \def\@nomecandidato{\Candidata:}%
             \else
-                  \def\@nomecandidato{\Candidato:}%
+                  \def\@nomecandidato{\Candidato}%
             \fi
             \ifx\@secondauthor\empty \else
                   \iffemminile
@@ -360,7 +360,7 @@
             \end{tabular}%
          }%
       \def\BoxCandidati{%
-         \begin{tabular}[t]{l}%
+         \begin{tabular}[t]{c}%
             \hbox{\unless\ifclassica\large\fi
                \textbf{\protect\@nomecandidato}}\\[.6ex]
                \hbox{\large\textrm{\protect\@author}}%
@@ -402,11 +402,14 @@
                \begin{flushleft}%
                      \BoxRelatori
                \end{flushleft}\par\vspace*{-1.5\baselineskip}
-               \begin{flushright}%
-                     \BoxCandidati
-               \end{flushright}\else
+               %\begin{flushright}%
+               \makebox[0.92\textwidth]{
+	               \centering 
+	               \BoxCandidati
+               }
+               %\end{flushright}\else
                \noindent
-               \makebox[\textwidth]{\BoxRelatori\hfill\BoxCandidati}\par
+               %\makebox[\textwidth]{\BoxRelatori\hfill\BoxCandidati}\par
              \fi
           \fi
       \fi

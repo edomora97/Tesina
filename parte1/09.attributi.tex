@@ -1,0 +1,180 @@
+Vengono qui riportate le descrizioni dettagliate di tutte le tabelle presenti nella base di dati. Anche gli attributi sono elencati ed analizzati, con particolare riferimento alle varie caratteristiche di questi. Nella varie tabelle che seguono vengono usate delle abbreviazioni per snellire. In particolare riguardo i vincoli le varie sigle significano:
+
+\begin{itemize}
+	\item \textbf{P}: chiave primaria
+	\item \textbf{E}: chiave esterna
+	\item \textbf{U}: vincolo di unicità
+	\item \textbf{X}: attributo ristrutturato nel NoSQL
+	\item \textbf{N}: attributo opzionale (\texttt{NULL})
+\end{itemize}
+
+È possibile trovare anche la combinazione di queste lettere.
+
+Nella colonna relativa al dominio viene indicato il tipo di dato dell'attributo, se maiuscolo è da riferirsi ad uno dei tipi predefiniti. In caso di chiavi esterne in questa colonna viene indicato l'attributo di ``chiave primaria'' collegato.
+
+\subsubsection{Tabella \texttt{user}}
+
+Questa tabella contiene le informazioni personali di ogni utente, compreso username e password. Ogni utente possiede un livello numerico intero e un livello di karma, sempre intero. Nella tabella sono anche memorizzati il nome e il cognome dell'utente.
+
+Per la gestione della password è stato adottato un metodo particolare per garantire il funzionamento anche su sistemi datati o privi della libreria \texttt{crypto}. 
+
+Se il server PHP supporta le funzioni \texttt{password\_hash} e \texttt{password\_verify} allora vengono usate quelle, altrimenti viene usata la funzione \underline{non sicura} SHA-1.
+
+La funzione \texttt{password\_hash} cifra la password utilizzando l'algoritmo \texttt{CRYPT\_BLOWFISH} che viene ripetuto 10 volte e viene utilizzato un \emph{salt} crittograficamente sicuro. Questo algoritmo è sufficientemente lento da evitare attacchi di tipo \emph{brute-force} e l'utilizzo del salt evita che le password vengano ricavate facilmente attraverso tabelle di lookup.
+
+La funzione \texttt{password\_verify} effettua l'hash della password inviata in chiaro utilizzando gli stessi parametri di \texttt{password\_hash} ed effettua un confronto tra le due stringhe non vulnerabile a degli attacchi \emph{timed-based}.
+
+\attributi{user}{
+	id\_user & P & INT & Identificativo dell'utente \\
+	username & U & VARCHAR(10) & Username dell'utente \\
+	password &   & VARCHAR(255) & Hash della password dell'utente \\
+	level    &   & INT & Numero del livello dell'utente, fare riferimento alla tabella [\ref{tab:livelli}] \\
+	karma    &   & INT & Punti karma dell'utente \\
+	name     &   & VARCHAR(50) & Nome dell'utente \\
+	surname  &   & VARCHAR(50) & Cognome dell'utente \\
+}
+
+
+\subsubsection{Tabella \texttt{room}}
+
+Ogni stanza ha un identificativo univoco \texttt{id\_room}, nascosto al pubblico che identifica la stanza all'interno del database. Al pubblico la stanza è identificata con un nome \texttt{room\_name} il quale è unico. Ogni stanza ha anche una descrizione \texttt{room\_descr} che rappresenta il titolo della stanza. 
+
+Ogni stanza contiene l'identificativo dell'utente amministratore della stanza \texttt{id\_admin}. 
+
+Il campo \texttt{private} indica se la stanza è pubblica o privata, secondo le specifiche in [\ref{sec:visibilita}].
+
+\attributi{room}{
+	id\_room   & P & INT & Identificativo della stanza \\
+	id\_admin  & E & user.id\_user & Identificativo dell'utente a cui appartiene la stanza \\
+	room\_name & U & VARCHAR(10) & Nome identificativo della stanza \\
+	room\_descr &   & VARCHAR(50) & Descrizione della stanza \\
+	private    &   & INT & Grado di visibilità della stanza \\
+}
+
+
+\subsubsection{Tabella \texttt{game}}
+
+Ogni partita è identificata all'interno del database con un identificativo unico \texttt{id\_game}. Ogni partita è identificata all'esterno con un \emph{nome breve} unico all'interno della stessa stanza (\texttt{game\_name}), inoltre ha una descrizione che rappresenta il titolo della partita \texttt{game\_descr}.
+
+Ogni partita è contenuta all'interno della stanza con id \texttt{id\_room}. I campi \texttt{day} e \texttt{status} sono informazioni utili della partita, l'istante temporale del gioco e lo stato della partita.
+
+Il numero di giocatori è memorizzato nel campo \texttt{num\_players} per gestire velocemente alcune query. Le informazioni per generare la partita vengono memorizzate nel database NoSQL, in precedenza erano memorizzate come JSON nel campo \texttt{gen\_info}.
+
+\attributi{game}{
+	id\_game    & P & INT & Identificativo della partita \\
+	id\_room    & E & room.id\_room & Identificativo della stanza associata \\
+	day         &   & INT & Giorno in cui si trova la partita. Fare riferimento a \ref{sec:tempo} \\
+	status      &   & INT & Stato in cui si trova la partita. Fare riferimento a \ref{sec:statoPartita} \\
+	game\_name  & U & VARCHAR(10) & Nome breve della partita. Deve essere unico all'interno della stanza \\
+	game\_descr &   & VARCHAR(50) & Descrizione della partita \\
+	num\_players &  & INT & Numero di giocatori nella partita \\
+	gen\_info  & XN & VARCHAR(500) & Informazioni per generare la partita \\
+}
+
+
+\subsubsection{Tabella \texttt{player}}
+
+In questa tabella sono memorizzati i ruoli dei giocatori interni ad una partita. 
+
+Ogni riga è identificata da un campo \texttt{id\_role} non pubblico. Ogni ruolo è interno alla partita \texttt{id\_game} e relativo all'utente \texttt{id\_user}. Il ruolo dell'utente è memorizzato nella stringa \texttt{role} la quale identifica un ruolo nella cartella dei ruoli. Per approfondire il significato di questa stringa fare riferimento a [\ref{sec:polimorfismo}].
+
+Il campo \texttt{status} indica lo stato dell'utente (vivo/morto/espulso). Alcuni ruoli potrebbero richiedere di memorizzare delle informazioni aggiuntive, il campo \texttt{data} (che viene memorizzato nel NoSQL) contiene dei dati salvati da un ruolo. Un giocatore ha anche memorizzato alcune informazioni sulle sue chat, per sapere quali sono i messaggi che non ha ancora letto.
+
+\attributi{player}{
+	id\_role   & P & INT & Identificativo del giocatore \\
+	id\_game   & E & game.id\_game & Identificativo della partita associata \\
+	id\_user   & E & user.id\_user & Identificativo dell'utente associato \\
+	role       &   & VARCHAR(50) & Nome identificativo del ruolo corrispondente, fare riferimento a [\ref{sec:polimorfismo}]. \\
+	status     &   & INT & Stato dell'utente nella partita, fare riferimento a [\ref{sec:statoGiocatore}] \\
+	data       & XN & VARCHAR(500) & Dati aggiuntivi del ruolo \\
+	chat\_info & XN & VARCHAR(500) & Informazioni sulle chat del giocatore \\
+}
+
+
+\subsubsection{Tabella \texttt{chat}}
+
+In questa tabella vengono memorizzati i messaggi delle varie chat. Ogni messaggio è identificato all'interno del database da \texttt{id\_chat} ed è relativo ad una singola partita (\texttt{id\_game}).
+
+Il mettente del messaggio è \texttt{id\_user\_from} cioè l'identificativo dell'utente che ha inviato il messaggio. Il destinatario \texttt{dest} è un numero intero che può rappresentare vari identificativi, in base a \texttt{group} il destinatario può essere un utente, il pubblico, una chat privata, ecc...
+
+Il testo del messaggio è \texttt{text} il quale non può essere più lungo di 200 caratteri e viene eseguito l'\emph{escape} sia per il database che per il JavaScript.
+
+\attributi{chat}{
+	id\_chat   & P & INT & Identificativo del messaggio \\
+	id\_game   & E & game.id\_game & Partita associata \\
+	id\_user\_from & E & user.id\_user & Utente mittente del messaggio \\
+	dest &   & INT & Destinatario del messaggio \\
+	group &   & INT & Gruppo di destinazione del messaggio \\
+	text &  & VARCHAR(200) & Testo del messaggio \\
+	timestamp &  & TIMESTAMP & Data e ora di invio del messaggio \\
+}
+
+
+\subsubsection{Tabella \texttt{vote}}
+
+In questa tabella vengono memorizzati i voti degli utenti. Ogni voto è identificato tramite il campo \texttt{id\_vote}, il quale rimane nascosto all'esterno del database. Ogni voto è specifico della partita \texttt{id\_game} nel momento \texttt{day} e appartiene all'utente \texttt{id\_user}. 
+
+Il voto è \texttt{vote} il quale può essere l'identificativo di un utente, un voto \emph{nullo} o altro. 
+
+\attributi{vote}{
+	id\_vote & P & INT & Identificativo della votazione \\
+	id\_game & E & game.id\_game & Identificativo della partita associata \\
+	id\_user & E & user.id\_user & Idenitficativo del giocatore associato \\
+	vote &  & INT & Voto dell'utente \\
+	day &  & INT & Giorno della partita in cui vale la votazione \\
+}
+
+
+\subsubsection{Tabella \texttt{event}}
+
+In questa tabella vengono memorizzati gli eventi delle partite. Ogni evento è identificato dal campo \texttt{id\_event} e appartiene alla partita \texttt{id\_game} ed è specifico del giorno \texttt{day} secondo le specifiche in [\ref{sec:tempo}].
+
+Il tipo di evento che si è verificato è memorizzato in \texttt{event\_code} secondo i codici descritti in [\ref{sec:codiciEventi}]. Il campo dei dati dell'evento è memorizzato nel database NoSQL e in precedenza era salvato come JSON in \texttt{event\_data}.
+
+\attributi{event}{
+	id\_event & P & INT & Identificativo dell'evento \\
+	id\_game  & E & game.id\_event & Partita associata all'evento \\
+	event\_code &  & INT & Codice dell'evento, fare riferimento a [\ref{sec:codiciEventi}] \\
+	event\_data & XN & VARCHAR(500) & Dati dell'evento \\
+	day &  & INT & Giorno della partita \\
+}
+
+
+\subsubsection{Tabella \texttt{notification}}
+
+In questa tabella sono memorizzate tutte le notifiche di un utente. Le notifiche cancellate non vengono rimosse ma semplicemente marcate come lette. Ogni notifica viene identificata dal campo \texttt{id\_notification} ed appartiene all'utente \texttt{id\_user}.
+
+Il testo del messaggio si trova nel campo \texttt{message} ed avrà un collegamento \texttt{link}, il quale è il percorso assoluto senza \texttt{basePath} (vedi capitolo [\ref{sec:pagineWeb}]). La notifica viene nascosta tramite il parametro \texttt{hidden}.
+
+Nel testo della notifica è possibile inserire dell'HTML per aggiungere dello stile.
+
+\attributi{notification}{
+	id\_notification & P & INT & Identificativo della notifica \\
+	id\_user & E & user.id\_user & Utente a cui appartiene la notifica \\
+	date &  & TIMESTAMP & Data di generazione della notifica \\
+	message & & VARCHAR(200) & Testo della notifica \\
+	link & & VARCHAR(200) & Collegamento alla notifica \\
+	hidden & & TINYINT & Booleano che indica se la notifica è stata nascosta \\
+}
+
+
+\subsubsection{Tabella \texttt{achievement}}
+
+Gli obiettivi sbloccati dagli utenti sono memorizzati in questa tabella. Ogni obiettivo sbloccato viene identificato dal campo \texttt{id\_achievement}. Per riconoscere l'obiettivo viene usato il campo \texttt{achievement\_name} che contiene il nome identificativo dell'obiettivo, come descritto nella tabella [\ref{tab:obiettivi}].
+
+\attributi{achievement}{
+	id\_achievement & P & INT & Identificativo dell'obiettivo sbloccato \\
+	id\_user & E & user.id\_user & Utente che ha sbloccato l'obiettivo \\
+	achievement\_name & & VARCHAR(50) & Nome identificativo dell'obiettivo \\
+	unlock\_date & & TIMESTAMP & Data di sblocco dell'obiettivo \\
+}
+
+
+\subsubsection{Tabella \texttt{room\_acl}}
+
+Le stanze che sono state impostate private con controllo degli accessi utilizzano questa tabella per sapere quali sono gli utenti autorizzati. La tabella contiene due campi che formano la chiave primaria: \texttt{id\_room} e \texttt{id\_user}.
+
+\attributi{room\_acl}{
+	id\_room & PE & room.id\_room & Identificativo della stanza \\
+	id\_user & PE & user.id\_user & Identificativo dell'utente \\
+}

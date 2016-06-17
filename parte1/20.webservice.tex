@@ -1,0 +1,42 @@
+Tutto ciò che è possibile fare attraverso le pagine web è possibile anche attraverso le API RESTful, così facendo è possibile scrivere una app nativa per dispositivi mobili. L'interfaccia è molto semplice e rispetta le caratteristiche di REST. Le risorse sono identificate tramite URL, i dati sono inviati tramite GET o POST a seconda del tipo di richiesta.
+
+\begin{itemize}
+	\item \texttt{/login} Effettua il login tramite \texttt{username/password} e salva nella \emph{sessione} l'identificativo dell'utente. Devono essere specificati i parametri \texttt{username} e \texttt{password} tramite \texttt{GET}
+	
+	\item \texttt{/login/(username)} Sostituisce il metodo precedente. Effettua il login dell'utente specificato. La password va specificata in \texttt{GET} come per \texttt{/login}. Se viene specificato anche lo \texttt{username} in \texttt{GET} viene ignorato.
+	
+	\item \texttt{/logout} Se l'utente è connesso lo disconnette cancellando la sessione
+	
+	\item \texttt{/user/(username)} Mostra le informazioni dell'utente specificato
+	
+	\item \texttt{/me} Scorciatoia per \texttt{/user/(username)} con lo \texttt{username} dell'utente 
+	
+	\item \texttt{/room/(room\_name)} Mostra le informazioni della stanza specificata
+	
+	\item \texttt{/room/(room\_name)/add\_acl} Permette all'utente \texttt{username} in \texttt{POST} di accedere alla stanza
+	
+	\item \texttt{/room/(room\_name)/remove\_acl} Nega all'utente \texttt{id\_user} in \texttt{POST} di accedere alla stanza
+	
+	\item \texttt{/room/(room\_name)/autocompletion} Specificando il parametro \texttt{q} in \texttt{GET} viene restituita una lista di username che assomigliano a \texttt{q}
+	
+	\item \texttt{/game/(room\_name)/(game\_name)} Mostra le informazioni della partita specificata
+	
+	\item \texttt{/game/(room\_name)/(game\_name)/vote} Effettua la votazione di un utente. Il voto deve essere l'\texttt{username} dell'utente votato nel parametro \texttt{vote} in \texttt{GET}.
+	
+	\item \texttt{/game/(room\_name)/(game\_name)/join} Prova ad entrare nella partita specificata. Se si ha raggiunto il numero di giocatori, la partita inizia
+	
+	\item \texttt{/game/(room\_name)/(game\_name)/start} Avvia la partita e la porta allo stato \texttt{NotStarted} per far entrare i giocatori.
+	
+	\item \texttt{/game/(room\_name)/(game\_name)/admin/term} Termina la partita e passa allo stato \texttt{TermByAdmin}.
+	
+	\item \texttt{/game/(room\_name)/(game\_name)/admin/kick} Espelle un giocatore dalla partita, lo username del giocatore deve essere passato in POST.
+	
+	\item \texttt{/new\_room/(room\_name)} Crea una nuova stanza appartenente all'utente. Deve venire specificato il parametro \texttt{descr} in \texttt{GET}. Può essere specificato il parametro \texttt{private} per rendere la stanza privata
+	
+	\item \texttt{/new\_game/(room\_name)/(game\_name)} Crea una nuova partita nella stanza specificata. Devono venire specificati i parametri \texttt{descr} e \texttt{num\_players} in \texttt{GET}.
+	
+	\item \texttt{/notification/dismiss} Nasconde la notifica con l'\texttt{id\_notification} impostato in \texttt{POST}.
+	
+	\item \texttt{/notification/update} Restituisce le ultime notifiche dell'utente dalla data \texttt{since}. È possibile ottenere le notifiche nascoste impostando \texttt{hidden} a 1. Di default vengono ritornate le ultime 5 notifiche, è possibile ottenerne un numero diverso impostando \texttt{limit}
+	
+\end{itemize}

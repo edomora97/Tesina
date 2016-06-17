@@ -1,0 +1,21 @@
+L'applicazione è utilizzabile attraverso delle pagine web generate dal PHP. Queste pagine sono tutte fornite da un unico script, \texttt{wrapper.php}, il quale, in base all'url, decide quale file renderizzare.
+
+Nel caso in cui l'applicazione venga esposta in una sottodirectory del server web è necessario configurare la variabile \texttt{basedir} nel file di confgurazione. Dall'url è necessario rimuovere o aggiungere quella parte per ottenere l'effettiva pagina richiesta. Lo stesso vale anche per le API, le quali di default vengono esposte in \texttt{\$basedir/api} ma è possibile modificare questo comportamento andando ad agire nel file \texttt{js/default.js}.
+
+Per riconoscere una pagina l'url viene testato su ogniuna delle possibiltà, in ordine, la prima che viene riconsciuta viene usata. Se l'inidirzzo non viene riconosciuto viene effettuato un redirect alla homepage.
+
+\begin{itemize}
+	\item \texttt{/index} Home page dell'applicazione
+	\item \texttt{/login} Pagina per effettuare il login applicazione
+	\item \texttt{/signup} Pagina di registrazione
+	\item \texttt{/game} Elenco delle partite giocate dall'utente
+	\item \texttt{/game/(room)/\_new} Pagina per creare una nuova partita nella stanza
+	\item \texttt{/game/(room)/(game)} Pagina relativa ad una partita specifica
+	\item \texttt{/game/(room)/(game)/admin} Pagina di amministrazione di una partita
+	\item \texttt{/room} Elenco delle stanze dell'utente
+	\item \texttt{/room/(room)} Pagina di informazioni si una specifica stanza
+	\item \texttt{/room/\_new} Pagina per creare una nuova stanza
+	\item \texttt{/join} Elenco delle partite in cui l'utente può entrare
+	\item \texttt{/user} Pagina dell'utente connesso
+	\item \texttt{/user/(username)} Pagina di un utente in particolare
+\end{itemize}

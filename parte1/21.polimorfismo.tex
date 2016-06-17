@@ -1,0 +1,38 @@
+Lupus in Tabula è un gioco intrinsecamente pieno di polimorfismo, i ruoli ne sono un esempio tipico. Ogni giocatore in una partita possiede un ruolo, possibilmente diverso da quello degli altri giocatori. Ogni tipo di ruolo dispone di proprietà e caratteristiche diverse ed è necessario che il tutto venga gestito in modo molto flessibile per consentire un'aggiunta semplice di nuovi ruoli e funzionalità. 
+
+Alla base della gestione dei vari ruoli c'è una classe base \texttt{Role} che si occupa di istanziare correttamente le classi derivate e la chiamata di eventuali metodi specifici. È necessario prestare una particolare attenzione alle convenzioni usate per gestire i vari ruoli, per esempio il nome del file sorgente è molto importate per la corretta individuazione del ruolo corrispondente.
+
+Ogni ruolo deve personalizzare alcune proprietà statiche derivate dalla classe padre \texttt{Role} per gestire correttamente alcune parti vitali della partita. Per esempio ogni ruolo dispone di una priorità che gestisce l'ordine in cui vengono eseguite le azioni durante la notte.
+
+Le proprità statiche presenti all'interno della classe base \texttt{Role} che è necessario personalizzare sono:
+
+\begin{itemize}
+	\item \texttt{\$role\_name} Il nome breve del ruolo, deve essere unico e viene usato per identificarlo. Deve essere composto solo da lettere minuscole dell'alfabeto inglese. Questa proprietà deve anche coincidere con il nome della classe (con la sola iniziale maiuscola) e del file, il quale è nel formato \texttt{class.Ruolo.php}
+	\item \texttt{\$name} Nome del ruolo, deve essere \texttt{\$role\_name} con l'iniziale maiuscola
+	\item \texttt{\$debug} Se viene impostato a \texttt{true} il ruolo è disponibile sono per gli utenti che hanno accesso alle funzionalità in beta
+	\item \texttt{\$enabled} Se viene impostato a \texttt{true} il ruolo non è utilizzabile
+	\item \texttt{\$priority} Valore numerico che indica la priorità di esecuzione delle azioni durante la notte. Un ruolo con un indice di priorità inferiore viene eseguito prima
+	\item \texttt{\$team\_name} Nome della fazione a cui appartiene il ruolo. Deve essere una delle costanti definite in \texttt{RoleTeam}
+	\item \texttt{\$mana} Valore che indica se il ruolo è buono o cattivo. Deve essere una delle costanti definite in \texttt{Mana}
+	\item \texttt{\$chat\_groups} Vettore che elenca i codici delle chat disponibili per il ruolo. Per esempio i lupi hanno accesso ad una chat privata. I valori in questo vettore devono essere delle costanti definite in \texttt{ChatGroup}
+	\item \texttt{\$gen\_probability} Valore indicativo che definisce un livello di probabilità della generazione del ruolo in caso di generazione automatica dei ruoli. Non è necessario che sia minore di 1
+	\item \texttt{\$gen\_number} Numero di copie dello stesso ruolo da generare inseme, per esempio i massoni che vengono generati in coppia avranno questo valore impostato a 2
+\end{itemize}
+
+Oltre a queste proprietà statiche che descrivono i vari ruoli è necessaria una parte di codice per l'esecuzione delle varie azioni specifiche di ogni ruolo. La classe base \texttt{Role} dispone di diversi metodi, non solo astratti, da sovrascrivere per personalizzare il comportamento di ogni specifico ruolo. Questi metodi sono qui elencati e descritti, quelli con l'asterisco sono astratti:
+
+\begin{itemize}
+	\item \texttt{splash()$^*$} Questa funzione ritorna una stringa da usare come messaggio con il nome del ruolo, per esempio per il ruolo Lupo ritornerà \emph{Sei un lupo}
+	\item \texttt{needVoteNight()} Questo metodo di controllo serve per verificare se il giocatore con questo ruolo deve ancora effettuare la votazione notturna. Il valore di ritorno è un vettore che contiene un breve messaggio \texttt{HTML} e una lista degli username votabili. Nella lista degli utenti votabili potrbbero essere presenti delle stringhe che non sono veri username ma dei \emph{segnaposto} come, per esempio, \emph{(nessuno)} per effettuare una votazione nulla. Se la funzione ritorna false il giocatore non deve votare
+	\item \texttt{performActionNight()} Viene effettuata l'azione notturna corrispondente al ruolo. Se questa funzione dovesse ritornare \texttt{false} la partita verrebbe interrotta
+	\item \texttt{checkVoteNight(\$username)} Controlla se \texttt{\$username} è un valore di votazione valido, se la funzione ritorna false il voto viene annullato
+	\item \texttt{needVoteDay()} L'equivalente di \texttt{needVoteNight()} per le azioni diurne
+	\item \texttt{performActionDay()} L'equivalente di \texttt{performActionNight()} per le azioni diurne
+	\item \texttt{checkVoteDay()} L'equivalente di \texttt{checkVoteNight()} per le azioni diurne
+\end{itemize}
+
+Per il funzionamento di alcuni ruoli è anche necessario l'utilizzo di funzioni che permettono il monitoraggio di alcuni parametri della partita. Per esempio tramite le funzioni \texttt{visit} e \texttt{unvisit} è possibile memorizzare che un certo utente ha fatto visita ad un altro, informazione utile per il \emph{paparazzo}. La funzione \texttt{kill} invece si occupa di \emph{uccidere} un giocatore facendo tutti i controlli del caso, per esempio non è possibile uccidere un giocatore morto o un giocatore protetto. È infatti presente un complesso sistema di protezione che si occupa di evitare che alcuni giocatori muoiano per mano di altri. Per esempio è possibile proteggere un giocatore specifico, un intero ruolo o tutti i giocatori da un altro giocatore, un altro ruolo o anche da tutti i giocatori della partita. Questo viene fatto memorizzando una lista di protezioni, le quali vengono identificate da un codice, \texttt{@username} per un utente specifico, \texttt{\#group} per un gruppo, oppure \texttt{*} per ogni giocatore.
+
+All'interno della base di dati, in particolare nella tabella \texttt{player} viene memorizzata l'associazione \texttt{user $\rightarrow$ role}. In particolare come chiave esterna del ruolo viene usata la proprietà \texttt{\$role\_name}. Quando la partita non è ancora inizata e i ruoli non sono ancora stati assegnati ai giocatori viene usato il valore di controllo \texttt{unknown}.
+
+Per istanziare correttamente i ruoli e per ottenere le proprietà statiche richieste viene utilizzata una funzionalità del linguaggio \texttt{PHP} che permette di usare il contenuto di una variabile come nome di classe o di metodo. In particolare cercando di accedere a dei campi statici di una stringa (la quale naturalmente non ne ha) si accede in realtà ai campi di una classe che ha come nome il contentuto della stringa. È necessario però essere certi che il valore della stringa corrisponda esattamente al nome della classe del ruolo e che questa classe derivi da \texttt{Role}. Per questi controlli vengono utilizzate le funzioni standard \texttt{class\_exists} e \texttt{class\_parents}.

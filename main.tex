@@ -7,6 +7,7 @@
 \usepackage{svg}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{array}
 
 \hypersetup{%
     pdfpagemode={UseOutlines},
@@ -27,7 +28,7 @@
 \titolo{Lupus in Tabula}
 \sottotitolo{Limiti della Prima Forma Normale e NoSQL}
 
-\candidato{\tabular{@{}l@{}}Edoardo \textsc{Morassutto}\\classe: Quinta C IA\endtabular}
+\candidato{\tabular{@{}c@{}}Edoardo \textsc{Morassutto}\\Quinta C IA\endtabular}
 
 \sedutadilaurea{\textsc{Anno~scolastico} 2015-2016}
 \logosede{icon}
@@ -54,58 +55,75 @@
 \chapter{Introduzione generale}
 
 \section{Descrizione del gioco}
-ciao mondo
-\input{sezioni/01.descrizione.tex}
+\input{parte1/01.descrizione.tex}
 
 \section{Ruoli}
-\input{sezioni/02.ruoli.tex}
+\input{parte1/02.ruoli.tex}
 
 \chapter{Analisi}
 
 \section{Analisi del problema}
-\input{sezioni/03.analisi.tex}
+\input{parte1/03.analisi.tex}
 
 \section{Stuttura dei componenti}
-\input{sezioni/04.componenti.tex}
+\input{parte1/04.componenti.tex}
 
 \section{Progettazione della base di dati}
-\input{sezioni/05.database.tex}
+\input{parte1/05.database.tex}
 
 \subsection{Schema concettuale}
-\input{sezioni/06.ER.tex}
+\input{parte1/06.ER.tex}
 
 \subsection{Schema logico}
-\input{sezioni/07.schemaLogico.tex}
+\input{parte1/07.schemaLogico.tex}
 
 \subsection{Descrizione delle entità}
-\input{sezioni/08.entita.tex}
-
-\subsection{Dizionario degli attributi}
-\input{sezioni/09.attributi.tex}
+\input{parte1/09.attributi.tex}
 
 \section{Codici utilizzati}
-\input{sezioni/10.codici.tex}
+\input{parte1/10.codici.tex}
 
 \subsection{Tempo del gioco}
-\input{sezioni/11.tempo.tex}
+\label{sec:tempo}
+\input{parte1/11.tempo.tex}
 
 \subsection{Stato della partita}
-\input{sezioni/12.statoPartita.tex}
+\label{sec:statoPartita}
+\input{parte1/12.statoPartita.tex}
 
 \subsection{Codici di risposta delle API}
-\input{sezioni/13.statoAPI.tex}
+\input{parte1/13.statoAPI.tex}
 
 \subsection{Codici degli eventi}
-\input{sezioni/14.statoEventi.tex}
+\label{sec:codiciEventi}
+\input{parte1/14.statoEventi.tex}
 
 \subsection{Visibilità della stanza}
-\input{sezioni/15.visibilita.tex}
+\label{sec:visibilita}
+\input{parte1/15.visibilita.tex}
+
+\subsection{Stato dei giocatori}
+\label{sec:statoGiocatore}
+\input{parte1/16.statoGiocatore.tex}
 
 \chapter{Implementazione}
 
 \section{Tecnologie utilizzate}
+\input{parte1/17.tecnologie.tex}
+
+\section{Configurazione}
+\input{parte1/18.configurazione.tex}
+
 \section{Pagine web}
+\label{sec:pagineWeb}
+\input{parte1/19.pagineWeb.tex}
+
 \section{Webservice REST}
+\input{parte1/20.webservice.tex}
+
+\section{Polimorfismo dei ruoli}
+\label{sec:polimorfismo}
+\input{parte1/21.polimorfismo.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                  PARTE DUE                          %
