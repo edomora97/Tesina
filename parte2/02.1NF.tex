@@ -1,0 +1,56 @@
+La Prima Forma Normale (1NF) venne ideata da Edgar Codd nel 1971 con una definizione molto semplice che venne poi ampliata e studiata da Hugh Darwen e Chris Date.
+
+La definizione iniziale di Codd è stata:
+
+\begin{framed}
+	Una relazione è in prima forma normale se ha la proprietà che nessuno dei suoi domini ha elementi che sono degli insiemi \\	
+	
+	\emph{<<A relation is in first normal form if it has the property that none of its domains has elements which are themselves sets>>} \cite{codd:relationalmodel}
+\end{framed}
+
+Più semplicemente nessuno degli attributi di una tabella deve essere scomponibile in parti più semplici, ogni attributo deve quindi essere atomico. Questa definizione non è sufficientemente chiara, pur escludendo la possibilità di inserire degli insiemi in una singola colonna rischia di escludere anche dei tipi di dato fondamentali. Per esempio una stringa può essere considerato un'insieme di caratteri, un numero decimale può essere considerato l'unione di un numero intero e della sua parte decimale. Secondo Christopher Date quindi il concetto di atomicità non ha significato (\emph{<<the notion of atomicity has no absolute meaning>>} \cite[p.~112]{date:dateondatabase}).
+
+Secondo Date la prima forma normale andrebbe riscritta, questa dovrebbe imporre le seguenti 5 condizioni \cite[p.~127-128]{date:dateondatabase}:
+
+\begin{framed}
+	\begin{enumerate}
+		\item Tra le righe non deve importare l'ordine
+		\item Tra le colonne non deve importare l'ordine
+		\item Non ci devono essere delle righe duplicate
+		\item Ogni cella della tabelle deve contenere un solo valore del dominio
+		\item Tutte le colonne sono regolari, non ci sono campi nascosti nelle righe
+	\end{enumerate}
+\end{framed}
+
+Nella trattazzione successiva riguardo le problematiche riscontrate di fa riferimento solo alla definizione di Codd riguardo all'atomicità, la definizione di Date non verrà considerata.
+
+Per esempio, la seguente relazione non si trova in 1NF, in quanto l'ultimo campo ha come dominio un insieme di numeri di telefono.
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{llll}
+		\textbf{ID}             & \textbf{Nome}                & \textbf{Cognome}                & \textbf{Numeri di telefono}                                                            \\ \hline
+		\multicolumn{1}{|l|}{1} & \multicolumn{1}{l|}{Edoardo} & \multicolumn{1}{l|}{Morassutto} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}333-3141592\\ 338-1472583\end{tabular}} \\ \hline
+		\multicolumn{1}{|l|}{2} & \multicolumn{1}{l|}{Mario}   & \multicolumn{1}{l|}{Rossi}      & \multicolumn{1}{l|}{124-5214225}                                                       \\ \hline
+		\multicolumn{1}{|l|}{3} & \multicolumn{1}{l|}{Fabio}   & \multicolumn{1}{l|}{Bianchi}    & \multicolumn{1}{l|}{123-1231231}                                                       \\ \hline
+	\end{tabular}
+\end{table}
+
+Una possibile soluzione al problema è quella di spezzare la tabella in due, una per memorizzare i dati delle persone (nome e cognome) e una per memorizzare i numeri di telefono.
+
+\begin{table}
+	\centering
+	\begin{tabular}{lll}
+		\textbf{ID}             & \textbf{Nome}                & \textbf{Cognome} \\ \hline
+		\multicolumn{1}{|l|}{1} & \multicolumn{1}{l|}{Edoardo} & \multicolumn{1}{l|}{Morassutto} \\ \hline
+		\multicolumn{1}{|l|}{2} & \multicolumn{1}{l|}{Mario}   & \multicolumn{1}{l|}{Rossi} \\ \hline
+		\multicolumn{1}{|l|}{3} & \multicolumn{1}{l|}{Fabio}   & \multicolumn{1}{l|}{Bianchi} \\ \hline
+	\end{tabular}
+	\begin{tabular}{ll}
+		\textbf{ID}             & \textbf{Numero di telefono}                                                            \\ \hline
+		\multicolumn{1}{|l|}{1} & \multicolumn{1}{l|}{333-3141592} \\ \hline
+		\multicolumn{1}{|l|}{1} & \multicolumn{1}{l|}{338-1472583} \\ \hline
+		\multicolumn{1}{|l|}{2} & \multicolumn{1}{l|}{124-5214225}                                                       \\ \hline
+		\multicolumn{1}{|l|}{3} & \multicolumn{1}{l|}{123-1231231}                                                       \\ \hline
+	\end{tabular}
+\end{table}

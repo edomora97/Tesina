@@ -8,6 +8,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{array}
+\usepackage[babel]{csquotes}
+\usepackage[isbn=true,hyperref]{biblatex}
 
 \hypersetup{%
     pdfpagemode={UseOutlines},
@@ -33,6 +35,7 @@
 \sedutadilaurea{\textsc{Anno~scolastico} 2015-2016}
 \logosede{icon}
 
+\addbibresource{bibliografia.bib}
 \input{functions.tex}
 
 \begin{document}
@@ -132,11 +135,23 @@
 
 \chapter{Introduzione alle forme normali}
 
+\section{Cenni introduttivi}
+\input{parte2/01.introduzione.tex}
+
 \section{Prima forma normale}
+\input{parte2/02.1NF.tex}
+
 \section{Seconda forma normale}
+\input{parte2/03.2NF.tex}
+
 \section{Terza forma normale}
+\input{parte2/04.3NF.tex}
+
 \section{Forma normale di Boyce-Codd}
-\section{Quarta e Quinta forma normale}
+\input{parte2/05.BCNF.tex}
+
+%\section{Quarta e Quinta forma normale}
+%\input{parte2/06.45NF.tex}
 
 \chapter{Problematiche con la 1NF}
 
@@ -148,5 +163,10 @@
 
 \section{Soluzione proposta}
 \label{sec:soluzione}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\printbibliography
 
 \end{document}
