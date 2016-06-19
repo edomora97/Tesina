@@ -1,0 +1,11 @@
+Tutti i dati problematici da memorizzare si possono ridurre, senza perdita di informazione, in una stringa \emph{serializzata}. La serializzazione è quindi il processo che, dati in input dei dati strutturati, ne cambia il formato in qualcosa di memorizzabile o trasmissibile. Esistono diversi metodi che \emph{serializzano} degli oggetti, i due più famosi sono la serializzazione \texttt{XML} e la serializzazione \texttt{JSON}. 
+
+La prima converte l'oggetto in un documento \texttt{XML}, una stringa composta da tag che rappresentano i dati in modo gerarchico in un albero. In modo molto simile anche il \texttt{JSON} modella i dati in una sorta di albero, senza però l'utilizzo di tag ma usando dei simboli come parentesi quadre e graffe. Il principale vantaggio del secondo metodo, a disapito di una migliore strutturazione dei dati, è la semplicità. Un documento \texttt{JSON} è molto più leggero (molti meno byte) e più leggero (più facile da decodificare) rispetto all'equivalente \texttt{XML}.
+
+La prima soluzione è quindi serializzare i dati \emph{problematici} in \texttt{JSON} da memorizzare in colonne dedicate sotto forma di stringhe. Questo però infrange la Prima Forma Normale, esisterebbero infatti degli attributi che non sono atomici dato che sono l'aggregazione di dati semplici.
+
+Dal punto di vista pratico questa soluzione è facilmente realizzabile, ogni volta che è necessario scrivere in quella colonna è suffciente serializzare i dati (per esempio con \texttt{json\_encode}) e ogni volta che vanno letti basta deserializzarli (per esempio con \texttt{json\_decode}).
+
+Il principale problema di questa soluzione, che deriva infatti dalla Prima Forma Normale, è il rischio di inconsistenza. Non è possibile infatti realizzare delle relazioni e tutelare i dati con i vincoli di chiave esterna. È quindi necessario prestare la massima attenzione nella manipolazione dei dati all'interno del database, aggiungendo tutti i controlli del caso lato applicazione.
+
+Questa soluzione è stata utilizzata nelle prime versioni di Lupus in Tabula e solo recentemente è stata modificata a favore della soluzione proposta [\ref{sec:soluzione}].

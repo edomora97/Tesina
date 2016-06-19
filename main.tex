@@ -53,7 +53,7 @@
 %                  PARTE UNO                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{Lupus in Tabula}
-
+\label{part:part1}
 
 \chapter{Introduzione generale}
 
@@ -150,15 +150,21 @@
 \section{Forma normale di Boyce-Codd}
 \input{parte2/05.BCNF.tex}
 
-%\section{Quarta e Quinta forma normale}
-%\input{parte2/06.45NF.tex}
+\section{Altre forme normali}
+\input{parte2/06.altreNF.tex}
 
 \chapter{Problematiche con la 1NF}
 
 \section{Contesto del problema}
+\input{parte2/07.contesto.tex}
 
 \section{Prime soluzioni parziali}
-\subsection{Una tabella per ruolo}
+\input{parte2/08.soluzioniParziali.tex}
+
+\subsection{Infrangere la prima forma normale}
+\input{parte2/09.soluzione1.tex}
+
+\subsection{Una tabella per tipo}
 \subsection{Una tabella key-value}
 
 \section{Soluzione proposta}
