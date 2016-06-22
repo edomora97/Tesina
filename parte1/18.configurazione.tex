@@ -24,7 +24,7 @@ L'applicazione dispone di un sistema di logging degli eventi del server, utile p
 
 \subsection{Sezione \texttt{webapp}}
 
-L'applicazione web ha bisogno di alcune informazioni aggiuntive per funzionare correttamente. In particolare se questa non viene hostata in un sottodomio dedicato ma in una sottodirectory, per esempio \texttt{http://example.com/lupus} è necessario specificare in questa sezione la parte di percorso da aggiungere agli url.
+L'applicazione web ha bisogno di alcune informazioni aggiuntive per funzionare correttamente. In particolare se questa non viene hostata in un sottodominio dedicato ma in una sottodirectory, per esempio \texttt{http://example.com/lupus} è necessario specificare in questa sezione la parte di percorso da aggiungere agli url.
 
 \begin{itemize}[noitemsep,nolistsep]
 	\item \texttt{basedir}: parte dell'url che deve essere aggiunta. Per esempio, nel caso di hosting in \texttt{http://example.com/lupus} è necessario impostare \texttt{/lupus}. Nel caso in cui l'applicazione sia hostata in un sottodominio dedicato, per esempio \texttt{http://lupus.example.com} è opportuno lasciare vuota questa opzione. \textbf{Attenzione}: è anche necessario specificare anche lo stesso valore all'interno di \texttt{js/default.js} ed eventualmente modificare il percorso da usare per le API.

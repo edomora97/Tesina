@@ -1,8 +1,8 @@
 L'applicazione è utilizzabile attraverso delle pagine web generate dal PHP. Queste pagine sono tutte fornite da un unico script, \texttt{wrapper.php}, il quale, in base all'url, decide quale file renderizzare.
 
-Nel caso in cui l'applicazione venga esposta in una sottodirectory del server web è necessario configurare la variabile \texttt{basedir} nel file di confgurazione. Dall'url è necessario rimuovere o aggiungere quella parte per ottenere l'effettiva pagina richiesta. Lo stesso vale anche per le API, le quali di default vengono esposte in \texttt{\$basedir/api} ma è possibile modificare questo comportamento andando ad agire nel file \texttt{js/default.js}.
+Nel caso in cui l'applicazione venga esposta in una sottodirectory del server web è necessario configurare la variabile \texttt{basedir} nel file di configurazione. Dall'url è necessario rimuovere o aggiungere quella parte per ottenere l'effettiva pagina richiesta. Lo stesso vale anche per le API, le quali di default vengono esposte in \texttt{\$basedir/api} ma è possibile modificare questo comportamento andando ad agire nel file \texttt{js/default.js}.
 
-Per riconoscere una pagina l'url viene testato su ogniuna delle possibiltà, in ordine, la prima che viene riconsciuta viene usata. Se l'inidirzzo non viene riconosciuto viene effettuato un redirect alla homepage.
+Per riconoscere una pagina l'url viene testato su ognuna delle possibilità, in ordine, la prima che viene riconosciuta viene usata. Se l'indirzzo non viene riconosciuto viene effettuato un redirect alla homepage.
 
 \begin{itemize}[noitemsep,nolistsep]
 	\item \texttt{/index} Home page dell'applicazione
