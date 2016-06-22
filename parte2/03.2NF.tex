@@ -2,24 +2,23 @@ La Seconda Forma Normale (2NF) fu anch'essa stilata da E. Codd nel 1971 \cite{co
 
 Secondo la definizione, ogni attributo non primo\footnote{Un attributo si dice primo quando fa parte di una chiave candidata} deve dipendere dall'intera chiave candidata e non da parte di essa. Per esempio, in una relazione, $R(\underline{A,B},C,D,E)$ dove le dipendenze funzionali sono $(A,B) \rightarrow (C,D,E)$ e $(A) \rightarrow (C)$, quindi $A$ e $B$ compongono la chiave. La relazione non è in seconda forma normale in quanto l'attributo $C$ dipende solo da $A$, quindi da parte della chiave.
 
-Questo è esempio pratico \cite{book:eprogram} di tabella che non è in seconda forma normale, la tabella memorizza il numero di reti di ogni giocatore in un determinato anno, in più viene memorizzato anche il luogo di nascita di ogni giocatore.
+Questo è un esempio pratico \cite{book:eprogram} di tabella che non è in seconda forma normale, la tabella memorizza il numero di reti di ogni giocatore in un determinato anno, in più viene memorizzato anche il luogo di nascita di ogni giocatore.
 
 \begin{table}
 	\centering
-	\caption{Tabella campionati}
 	\begin{tabular}{llll}
 		\textbf{\underline{nome}}                     & \textbf{luogo}               & \textbf{\underline{anno}}                  & \textbf{reti}          \\ \hline
 		\multicolumn{1}{|l|}{Rossi Mario} & \multicolumn{1}{l|}{Firenze} & \multicolumn{1}{l|}{1998/1999} & \multicolumn{1}{l|}{3} \\ \hline
 		\multicolumn{1}{|l|}{Rossi Mario} & \multicolumn{1}{l|}{Firenze} & \multicolumn{1}{l|}{1999/2000} & \multicolumn{1}{l|}{4} \\ \hline
 		\multicolumn{1}{|l|}{Conti Bruno} & \multicolumn{1}{l|}{Roma}    & \multicolumn{1}{l|}{1998/1999} & \multicolumn{1}{l|}{6} \\ \hline
 	\end{tabular}	
+	\caption{Tabella campionati}
 \end{table}
 
 Per risolvere il problema e rendere la tabella in (almeno) seconda forma normale è possibile dividere la relazione in due, creando una tabella per i giocatori e una per i campionati. In particolare, dato che il luogo dipende solo dal nome del giocatore è possibile memorizzare questa informazione una volta sola in una tabella separata.
 
 \begin{table}
 	\centering
-	\caption{Soluzione: tabella giocatori e tabella campionati}
 	\begin{tabular}{cc}
 		\begin{minipage}{.5\linewidth}
 			\begin{tabular}{ll}
@@ -38,4 +37,5 @@ Per risolvere il problema e rendere la tabella in (almeno) seconda forma normale
 			\end{tabular}
 		\end{minipage}
 	\end{tabular}
+	\caption{Soluzione: tabella giocatori e tabella campionati}
 \end{table}

@@ -3,7 +3,7 @@ L'applicazione viene configurata attraverso il file \texttt{config/config.ini}, 
 \subsection{Sezione \texttt{database}}
 In questa sezione verranno configurati i vari parametri relativi alla connessione e all'uso dei vari database. In particolare verranno specificate le varie stringhe di connessione ai DBMS e le credenziali da usare.
 
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \texttt{string}: stringa di PDO sa usare per connettersi al database MySQL. Normalmente viene usata una stringa simile a \texttt{mysql:host=localhost;dbname=lupus}
 	\item \texttt{username}: username dell'utente del database
 	\item \texttt{password}: password dell'utente specificato
@@ -16,7 +16,7 @@ In questa sezione verranno configurati i vari parametri relativi alla connession
 
 L'applicazione dispone di un sistema di logging degli eventi del server, utile per il debug ma anche per il controllo dell'integrità in fase di produzione.
 
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \texttt{level}: livello di output del log, maggiore è il livello, più dati sono stampati. Un valore pari a 0 mostrerà solo errori molto gravi, mentre un valore di 4 stamperà molto output. Il valore 4 è utile solo per il debug di brevi periodi in quanto genera file molto grandi.
 	\item \texttt{path}: percorso relativo alla root dell'applicazione del file di log da usare, il file deve essere scrivibile altrimenti l'applicazione potrebbe non funzionare correttamente.
 \end{itemize}
@@ -26,7 +26,7 @@ L'applicazione dispone di un sistema di logging degli eventi del server, utile p
 
 L'applicazione web ha bisogno di alcune informazioni aggiuntive per funzionare correttamente. In particolare se questa non viene hostata in un sottodomio dedicato ma in una sottodirectory, per esempio \texttt{http://example.com/lupus} è necessario specificare in questa sezione la parte di percorso da aggiungere agli url.
 
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \texttt{basedir}: parte dell'url che deve essere aggiunta. Per esempio, nel caso di hosting in \texttt{http://example.com/lupus} è necessario impostare \texttt{/lupus}. Nel caso in cui l'applicazione sia hostata in un sottodominio dedicato, per esempio \texttt{http://lupus.example.com} è opportuno lasciare vuota questa opzione. \textbf{Attenzione}: è anche necessario specificare anche lo stesso valore all'interno di \texttt{js/default.js} ed eventualmente modificare il percorso da usare per le API.
 \end{itemize}
 
@@ -35,7 +35,7 @@ L'applicazione web ha bisogno di alcune informazioni aggiuntive per funzionare c
 
 È possibile personalizzare alcuni parametri del gioco, come il numero minimo di giocatori o il numero massimo. Queste impostazioni non vengono controllate, è opportuno inserire valori coerenti. Inserire per esempio un numero minimo di giocatori troppo basso può creare partite non valide. Ammettere troppi giocatori potrebbe sovraccaricare il server.
 
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \texttt{min\_players}: numero minimo di giocatori all'interno di una partita
 	\item \texttt{max\_players}: numero massimo di giocatori all'interno di una partita
 	\item \texttt{lupus\_cutoff}: numero di giocatori minimo per scattare da \texttt{lupus\_low} lupi a \texttt{lupus\_hi}

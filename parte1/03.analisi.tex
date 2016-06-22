@@ -2,8 +2,8 @@
 
 Il sistema deve essere in grado di sopportare un numero crescente di giocatori e un numero molto elevato di partite, deve essere in grado di scalare ottimalmente con le richieste. La base di dati deve essere sviluppata in modo da garantire un funzionamento efficiente e una robustezza dei dati.
 
-I dati identificativi degli utenti devono essere conservati in modo sicuro, è necessario proteggere le credenziali di accesso tramite avanzati sistemi di \emph{hashing}.
+I dati identificativi degli utenti devono essere conservati in modo sicuro, è necessario proteggere le credenziali di accesso tramite moderni sistemi di \emph{hashing}.
 
 È necessario fare molta attenzione ai privilegi degli utenti, proteggendo le risorse che non sono accessibili. Per esempio è opportuno evitare che gli utenti possano vedere, entrare o modificare le partite alle quali gli è stato negato il permesso.
 
-Le chiavi interne del database non sono visibili agli utenti, delle chiavi alternative non numeriche sono visualizzate dagli utenti. Per esempio le partite non vengono identificate (lato utente) da un intero progressivo ma da un \emph{nome breve}, una sequenza di caratteri che rispetta la seguente \texttt{regex}: \texttt{[a-zA-Z][a-zA-Z0-9]\{0,9\}}. Deve essere lungo da 1 a 10 caratteri \texttt{ASCII}, il primo carattere deve essere una lettera e deve essere unico nel suo contesto.
+Le chiavi interne del database non sono visibili agli utenti, delle chiavi alternative non numeriche sono visualizzate al loro posto. Per esempio le partite non vengono identificate (lato utente) da un intero progressivo ma da un \emph{nome breve}, una sequenza di caratteri che rispetta la seguente \texttt{regex}: \texttt{[a-zA-Z][a-zA-Z0-9]\{0,9\}}. Deve essere lungo da 1 a 10 caratteri \texttt{ASCII}, il primo carattere deve essere una lettera e deve essere unico nel suo contesto.

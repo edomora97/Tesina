@@ -1,5 +1,11 @@
+\emph{Lupus in Tabula} è un gioco di ruolo complesso nel quale i giocatori interpretano dei personaggi e devono raccontare una storia cercando di far vincere la propria squadra. Il gioco, spesso noto anche come Mafia\cite{wiki:mafia}, si basa sul riuscire a dedurre il ruolo degli altri giocatori per capire da chi è composta la propria squadra. 
+
+In questo documento è stato analizzato il problema di modellare i dati delle partite e di creare un server che permettesse a molti utenti di giocare in contemporanea. Durante lo sviluppo ci sono state delle difficoltà riguardo la memorizzazione di alcuni dati delle partite che sono stati in parte risolti.
+
+Il documento è stato diviso in due parti, la prima è un'analisi completa dell'applicazione trattando nel dettaglio ogni aspetto sia progettuale che implementativo, la seconda invece, dopo un'introduzione alle forme normali, tratta delle problematiche incontrate e di alcune delle possibili soluzioni.
+
 Durante lo sviluppo di un database \emph{relazionale} è bene cercare di rispettare le \emph{forme normali}. Una forma normale è un'insieme di regole che evitano che in una base di dati ci sia  ridondanza o inconsistenza.
 
-Alcune di queste forme normali spesso sono molto restrittive e impediscono lo sviluppo di certi tipi di applicazioni, in particolare la prima forma normale rende pressochè impossibile il \emph{design} di un database flessibile. Per esempio se le entità non sono ben definite a priori o le proprietà di queste sono variabili si raggiunge un limite del modello relazionale.
-
 In questa trattazione si esaminerà uno scenario in cui un semplice database relazionale in prima forma normale non è sufficiente a modellare il problema e si rende necessaria una diversa implementazione.
+
+L'applicazione è stata completata ed è disponibile su \url{https://lupus.serben.tk}, tutto il sorgente è pubblico ed accessibile su \url{https://github.com/lupus-dev/lupus}.

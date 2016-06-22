@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{array}
+\usepackage{enumitem}
 \usepackage[babel]{csquotes}
 \usepackage[isbn=true,hyperref]{biblatex}
 
@@ -28,12 +29,12 @@
 \nomeateneo{Pordenone}
 \FacoltaDi{Specializzazione Informatica}
 \titolo{Lupus in Tabula}
-\sottotitolo{Limiti della Prima Forma Normale e NoSQL}
+\sottotitolo{Limiti della Prima Forma Normale}
 
 \candidato{\tabular{@{}c@{}}Edoardo \textsc{Morassutto}\\Quinta C IA\endtabular}
 
 \sedutadilaurea{\textsc{Anno~scolastico} 2015-2016}
-\logosede{icon}
+\logosede{logo}
 
 \addbibresource{bibliografia.bib}
 \input{functions.tex}
@@ -162,13 +163,18 @@
 \input{parte2/08.soluzioniParziali.tex}
 
 \subsection{Infrangere la prima forma normale}
+\label{sec:soluzione1}
 \input{parte2/09.soluzione1.tex}
 
 \subsection{Una tabella per tipo}
-\subsection{Una tabella key-value}
+\input{parte2/10.soluzione2.tex}
+
+\subsection{Tabelle key-value}
+\input{parte2/11.soluzione3.tex}
 
 \section{Soluzione proposta}
 \label{sec:soluzione}
+\input{parte2/12.soluzione.tex}
 
 \cleardoublepage
 \phantomsection

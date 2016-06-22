@@ -1,4 +1,4 @@
-Vengono qui riportate le descrizioni dettagliate di tutte le tabelle presenti nella base di dati. Anche gli attributi sono elencati ed analizzati, con particolare riferimento alle varie caratteristiche di questi. Nella varie tabelle che seguono vengono usate delle abbreviazioni per snellire. In particolare riguardo i vincoli le varie sigle significano:
+Vengono qui riportate le descrizioni dettagliate di tutte le tabelle presenti nella base di dati. Anche gli attributi sono elencati ed analizzati, con particolare riferimento alle varie caratteristiche di questi. Nella varie tabelle che seguono vengono usate delle abbreviazioni per snellire la trattazione. In particolare riguardo i vincoli le varie sigle significano:
 
 \begin{itemize}
 	\item \textbf{P}: chiave primaria
@@ -58,7 +58,10 @@ Ogni partita è identificata all'interno del database con un identificativo unic
 
 Ogni partita è contenuta all'interno della stanza con id \texttt{id\_room}. I campi \texttt{day} e \texttt{status} sono informazioni utili della partita, l'istante temporale del gioco e lo stato della partita.
 
-Il numero di giocatori è memorizzato nel campo \texttt{num\_players} per gestire velocemente alcune query. Le informazioni per generare la partita vengono memorizzate nel database NoSQL, in precedenza erano memorizzate come JSON nel campo \texttt{gen\_info}.
+Il numero di giocatori è memorizzato nel campo \texttt{num\_players} per eseguire velocemente alcune query. Le informazioni per generare la partita vengono memorizzate nel database NoSQL, in precedenza erano memorizzate come JSON nel campo \texttt{gen\_info}.
+
+% quick layout fix
+\newpage
 
 \attributi{game}{
 	id\_game    & P & INT & Identificativo della partita \\
@@ -98,6 +101,8 @@ In questa tabella vengono memorizzati i messaggi delle varie chat. Ogni messaggi
 Il mettente del messaggio è \texttt{id\_user\_from} cioè l'identificativo dell'utente che ha inviato il messaggio. Il destinatario \texttt{dest} è un numero intero che può rappresentare vari identificativi, in base a \texttt{group} il destinatario può essere un utente, il pubblico, una chat privata, ecc...
 
 Il testo del messaggio è \texttt{text} il quale non può essere più lungo di 200 caratteri e viene eseguito l'\emph{escape} sia per il database che per il JavaScript.
+
+\newpage
 
 \attributi{chat}{
 	id\_chat   & P & INT & Identificativo del messaggio \\
@@ -139,6 +144,7 @@ Il tipo di evento che si è verificato è memorizzato in \texttt{event\_code} se
 	day &  & INT & Giorno della partita \\
 }
 
+\newpage
 
 \subsubsection{Tabella \texttt{notification}}
 
@@ -178,3 +184,5 @@ Le stanze che sono state impostate private con controllo degli accessi utilizzan
 	id\_room & PE & room.id\_room & Identificativo della stanza \\
 	id\_user & PE & user.id\_user & Identificativo dell'utente \\
 }
+
+\newpage

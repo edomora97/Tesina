@@ -6,7 +6,7 @@ Ogni ruolo deve personalizzare alcune proprietà statiche derivate dalla classe 
 
 Le proprità statiche presenti all'interno della classe base \texttt{Role} che è necessario personalizzare sono:
 
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \texttt{\$role\_name} Il nome breve del ruolo, deve essere unico e viene usato per identificarlo. Deve essere composto solo da lettere minuscole dell'alfabeto inglese. Questa proprietà deve anche coincidere con il nome della classe (con la sola iniziale maiuscola) e del file, il quale è nel formato \texttt{class.Ruolo.php}
 	\item \texttt{\$name} Nome del ruolo, deve essere \texttt{\$role\_name} con l'iniziale maiuscola
 	\item \texttt{\$debug} Se viene impostato a \texttt{true} il ruolo è disponibile sono per gli utenti che hanno accesso alle funzionalità in beta
@@ -19,9 +19,10 @@ Le proprità statiche presenti all'interno della classe base \texttt{Role} che �
 	\item \texttt{\$gen\_number} Numero di copie dello stesso ruolo da generare inseme, per esempio i massoni che vengono generati in coppia avranno questo valore impostato a 2
 \end{itemize}
 
+\vspace{0.7em}
 Oltre a queste proprietà statiche che descrivono i vari ruoli è necessaria una parte di codice per l'esecuzione delle varie azioni specifiche di ogni ruolo. La classe base \texttt{Role} dispone di diversi metodi, non solo astratti, da sovrascrivere per personalizzare il comportamento di ogni specifico ruolo. Questi metodi sono qui elencati e descritti, quelli con l'asterisco sono astratti:
 
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \texttt{splash()$^*$} Questa funzione ritorna una stringa da usare come messaggio con il nome del ruolo, per esempio per il ruolo Lupo ritornerà \emph{Sei un lupo}
 	\item \texttt{needVoteNight()} Questo metodo di controllo serve per verificare se il giocatore con questo ruolo deve ancora effettuare la votazione notturna. Il valore di ritorno è un vettore che contiene un breve messaggio \texttt{HTML} e una lista degli username votabili. Nella lista degli utenti votabili potrbbero essere presenti delle stringhe che non sono veri username ma dei \emph{segnaposto} come, per esempio, \emph{(nessuno)} per effettuare una votazione nulla. Se la funzione ritorna false il giocatore non deve votare
 	\item \texttt{performActionNight()} Viene effettuata l'azione notturna corrispondente al ruolo. Se questa funzione dovesse ritornare \texttt{false} la partita verrebbe interrotta

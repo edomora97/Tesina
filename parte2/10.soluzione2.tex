@@ -1,0 +1,9 @@
+Il modo più immediato per risolvere il problema della mancanza di relazioni della prima soluzione si può risolvere creando una tabella per ogni tipo di ruolo. Questa soluzione può sembrare accettabile, permetterebbe alla base di dati di rimanere almeno in Prima Forma Normale e garantirebbe l'integrità referenziale.
+
+Il principale svantaggio di questa soluzione si ha nella realizzazione. Per i ruoli più semplici basta una tabella per ruolo, i più complessi però richiedono anche due o più tabelle messe tra loro in relazione. Il numero di tabelle creserebbe quindi con il numero di ruoli, andando a complicare ed appesantire notevolmente la base di dati.
+
+Lo sviluppo dell'applicazione ne risentirebbe anche di più, è necessario implementare delle interfaccie alle nuove tabelle per riuscire ad estrarre efficacemente i dati. Ognuna di queste interfaccie sarebbe diversa dalle altre, spesso anche complicate da scrivere e da gestire. 
+
+Queste problematiche si applicano anche agli altri dati da memorizzare, gli eventi per esempio richiedono una tabella per tipologia. Le informazioni per la generazione di una partita richiedono una colonna in più per ogni ruolo per memorizzare il numero di giocatori. 
+
+Questa soluzione non è stata implementata per la sua eccessiva complessità rispetto alla prima soluzione o alla soluzione proposta.

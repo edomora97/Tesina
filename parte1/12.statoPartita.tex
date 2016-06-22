@@ -1,4 +1,4 @@
-Ogni partita deve trovarsi in uno stato preciso che indica le condizioni della partita. In particolare è necessario sapere se la partita è già iniziata, se è finita, se ha vinto una certa squadra, se è stata interrotta ecc...
+Ogni partita deve trovarsi in uno stato preciso che indica le condizioni del gioco. In particolare è necessario sapere se la partita è già iniziata, se è finita, se ha vinto una certa squadra, se è stata interrotta ecc...
 
 Per rendere più chiaro il valore di questi codici i vari stati delle partite sono stati divisi in alcune fasi: Pre-Partita, In-Partita, Terminata-OK, Terminata-Errore.
 
@@ -11,7 +11,7 @@ Questa fase è identificata da codici nell'intervallo:
 \]
 
 I codici riconosciuti sono:
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \gamestatus{0}{Setup}{Impostazione della partita}
 \end{itemize}
 
@@ -25,7 +25,7 @@ Viene identificata da codici nell'intervallo:
 \]
 
 I codici riconosciuti sono:
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \gamestatus{100}{NotStarted}{La partita è attiva e i giocatori possono iniziare ad entrare}
 	\item \gamestatus{101}{Running}{La partita è in corso e i giocatori non possono più entrare}
 \end{itemize}
@@ -40,7 +40,7 @@ I codici che la identificano sono compresi nell'intervallo:
 \]
 
 I codici riconosciuti sono:
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \gamestatus{200\,+\,y}{Win$y$}{La partita è terminata e ha vinto la squadra $y\ (0\le y < 99)$}
 	\item \gamestatus{299}{DeadWin}{La partita è terminata perché tutti i giocatori sono morti}
 \end{itemize}
@@ -56,7 +56,7 @@ I codici che identificano questa fase sono compresi dall'intervallo:
 \]
 
 I codici riconosciuti sono:
-\begin{itemize}
+\begin{itemize}[noitemsep,nolistsep]
 	\item \gamestatus{300}{TermByAdmin}{L'amministratore della stanza ha fatto terminare la partita}
 	\item \gamestatus{301}{TermBySolitude}{Un numero eccessivo di giocatori hanno abbandonato la partita}
 	\item \gamestatus{302}{TermByVote}{\'E stato raggiunto il \emph{quorum} per terminare la partita}

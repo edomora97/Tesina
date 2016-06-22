@@ -1,4 +1,4 @@
-Ogni utente registrato nel sistema può giocare alle partite create dagli altri giocatori oppure può creare delle sue partite. Per creare delle partite l'utente deve creare delle staze, dei raggruppamenti di zero, una o più partite.
+Ogni utente registrato nel sistema può giocare alle partite create dagli altri giocatori oppure può crearne di nuove. Per creare delle partite l'utente deve creare delle stanze, dei raggruppamenti di zero, una o più partite.
 
 Una stanza appartiene ad uno ed un solo utente che ha poteri amministrativi su questa, solo lui può creare una nuova partita in quella stanza. Ogni stanza viene identificata da un \emph{nome breve} univoco e non modificabile ed ha una breve descrizione. In una stanza ci può essere al più una parita in corso.
 
@@ -6,9 +6,9 @@ Quando un utente possiede una stanza libera (senza partite in corso), può decid
 
 Gli altri utenti possono entrare nella partita solo se hanno i permessi per farlo, ogni partita infatti condivide i permessi della stanza a cui appartiene, per esempio se la stanza è protetta da delle liste di accesso (\texttt{ACL}), solo gli utenti specificati possono accedervi.
 
-Una partita è composta da una serie di giocatori, degli utenti a cui è stato assegnato un ruolo (eventualmente non definito). Appena un giocatore entra nella partita (e questa non è iniziata) gli viene assegnato un ruolo non definito (\texttt{unknown}). Appena il numero di giocatori raggiunge il valore specificato dall'amministratore vengono generati i ruoli esatti dei giocatori. I ruoli possono essere generati in due modi: manualmente secondo precise impostazioni dell'amministratore oppure automaticamente specificando solo quali ruoli generare.
+Una partita è composta da una serie di giocatori, degli utenti a cui è stato assegnato un ruolo (eventualmente non definito). Appena un giocatore entra nella partita (e questa non è iniziata) gli viene assegnato un ruolo non definito (\texttt{unknown}). Appena il numero di giocatori raggiunge il valore specificato dall'amministratore vengono generati i ruoli esatti dei giocatori. I ruoli possono essere generati in due modi: manualmente secondo precise impostazioni dell'amministratore oppure automaticamente specificando solo quali ruoli usare.
 
-Ogni utente può giocare anche a diverse partite in contemporanea, in accordo con i limiti imposti dal suo livello. Ogni utente infatti ha un livello che limita le sue possibilità di gioco, come il numero di partite contemporanee, il numero di stanze e il numero di stanze private.
+Ogni utente può giocare anche a diverse partite in contemporanea, in accordo con i limiti imposti dal suo livello. Ogni utente infatti ha un livello che limita le sue possibilità di gioco, come il numero di partite contemporanee, il numero di stanze pubbliche e private.
 
 Il livello di un giocatore è sempre crescente, si può venire declassati solo dall'amministratore del server. Il livello viene stabilito tramite un valore detto \emph{karma} che rappresenta un'indicazione del tempo di gioco dell'utente. Si guadagnano punti karma giocando partite, vincendo partite o invitando altri giocatori. Quando il karma raggiunge un valore sufficientemente alto viene aumentato il livello dell'utente. 
 

@@ -127,7 +127,8 @@
 \ifdim\wd\TPT@logobox<\textwidth \box\TPT@logobox
 \else\resizebox{\textwidth}{!}{\box\TPT@logobox}%
 \fi}{\def\@logosede{#2}%
-\includegraphics[height=\TPT@logoheight]{#1}\hskip\TPT@logospace
+\includegraphics[width=20em%height=\TPT@logoheight
+]{#1}\hskip\TPT@logospace
    \expandafter\@printloghi\@logosede,!}}
 
 \def\tutoreaziendale#1{\gdef\@tutoreaziendale{#1}}
@@ -205,6 +206,11 @@
 \gdef\frontespizio{%
 \begingroup
       \def\ps@myheadings{\let\@mkboth\markboth
+		{\centering 
+			\vspace*{-6em} 
+			\includegraphics[width=20em]{logo}\par
+			\vspace*{-4em}
+		}
       \def\@oddhead{\vbox{%
       \hbox to \hsize{\hfill {\huge \@ateneo}\hfill}%
       \ifclassica
@@ -234,6 +240,7 @@
       \fi
       \begin{center}
       {\rmfamily\mdseries
+      	\vspace*{-12em}
       \ifdottorato
             \large \@phdschool\par\medskip
       \else
@@ -252,7 +259,7 @@
             \par}
       \fi
       \end{center}
-      \vfill
+      %\vfill
       \begin{center}
         \huge
         \ifdottorato
@@ -296,8 +303,8 @@
                         \fi}}%
             \fi
       \fi
-      \par
-      {\centering \printloghi\par}
+      %\par
+      %{\centering \printloghi\par}
       \vfill
       \iflaureatriennale
             \let\@nomerelatore\empty

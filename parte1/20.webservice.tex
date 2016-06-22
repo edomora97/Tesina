@@ -1,9 +1,9 @@
 Tutto ciò che è possibile fare attraverso le pagine web è possibile anche attraverso le API RESTful, così facendo è possibile scrivere una app nativa per dispositivi mobili. L'interfaccia è molto semplice e rispetta le caratteristiche di REST. Le risorse sono identificate tramite URL, i dati sono inviati tramite GET o POST a seconda del tipo di richiesta.
 
-\begin{itemize}
-	\item \texttt{/login} Effettua il login tramite \texttt{username/password} e salva nella \emph{sessione} l'identificativo dell'utente. Devono essere specificati i parametri \texttt{username} e \texttt{password} tramite \texttt{GET}
+\begin{itemize}[noitemsep,nolistsep]
+	\item \texttt{/login} Effettua il login tramite \texttt{username/password} e salva nella \emph{sessione} l'identificativo dell'utente. Devono essere specificati i parametri \texttt{username} e \texttt{password} tramite \texttt{POST}
 	
-	\item \texttt{/login/(username)} Sostituisce il metodo precedente. Effettua il login dell'utente specificato. La password va specificata in \texttt{GET} come per \texttt{/login}. Se viene specificato anche lo \texttt{username} in \texttt{GET} viene ignorato.
+	\item \texttt{/login/(username)} Sostituisce il metodo precedente. Effettua il login dell'utente specificato. La password va specificata in \texttt{POST} come per \texttt{/login}. Se viene specificato anche lo \texttt{username} in \texttt{POST} viene ignorato.
 	
 	\item \texttt{/logout} Se l'utente è connesso lo disconnette cancellando la sessione
 	
@@ -21,7 +21,7 @@ Tutto ciò che è possibile fare attraverso le pagine web è possibile anche att
 	
 	\item \texttt{/game/(room\_name)/(game\_name)} Mostra le informazioni della partita specificata
 	
-	\item \texttt{/game/(room\_name)/(game\_name)/vote} Effettua la votazione di un utente. Il voto deve essere l'\texttt{username} dell'utente votato nel parametro \texttt{vote} in \texttt{GET}.
+	\item \texttt{/game/(room\_name)/(game\_name)/vote} Effettua la votazione di un utente. Il voto deve essere l'\texttt{username} dell'utente votato nel parametro \texttt{vote} in \texttt{POST}.
 	
 	\item \texttt{/game/(room\_name)/(game\_name)/join} Prova ad entrare nella partita specificata. Se si ha raggiunto il numero di giocatori, la partita inizia
 	
@@ -29,11 +29,11 @@ Tutto ciò che è possibile fare attraverso le pagine web è possibile anche att
 	
 	\item \texttt{/game/(room\_name)/(game\_name)/admin/term} Termina la partita e passa allo stato \texttt{TermByAdmin}.
 	
-	\item \texttt{/game/(room\_name)/(game\_name)/admin/kick} Espelle un giocatore dalla partita, lo username del giocatore deve essere passato in POST.
+	\item \texttt{/game/(room\_name)/(game\_name)/admin/kick} Espelle un giocatore dalla partita, lo username del giocatore deve essere passato in \texttt{POST}.
 	
-	\item \texttt{/new\_room/(room\_name)} Crea una nuova stanza appartenente all'utente. Deve venire specificato il parametro \texttt{descr} in \texttt{GET}. Può essere specificato il parametro \texttt{private} per rendere la stanza privata
+	\item \texttt{/new\_room/(room\_name)} Crea una nuova stanza appartenente all'utente. Deve venire specificato il parametro \texttt{descr} in \texttt{POST}. Può essere specificato il parametro \texttt{private} per rendere la stanza privata
 	
-	\item \texttt{/new\_game/(room\_name)/(game\_name)} Crea una nuova partita nella stanza specificata. Devono venire specificati i parametri \texttt{descr} e \texttt{num\_players} in \texttt{GET}.
+	\item \texttt{/new\_game/(room\_name)/(game\_name)} Crea una nuova partita nella stanza specificata. Devono venire specificati i parametri \texttt{descr} e \texttt{num\_players} in \texttt{POST}.
 	
 	\item \texttt{/notification/dismiss} Nasconde la notifica con l'\texttt{id\_notification} impostato in \texttt{POST}.
 	

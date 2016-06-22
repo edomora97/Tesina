@@ -7,7 +7,7 @@ Ogni ruolo, oltre al nome ha anche alcune proprietà aggiuntive:
 	\item Nome identificativo: nome unico che identifica il ruolo
 	\item Priorità: serve per stabilire un ordine nell'esecuzione delle azioni
 	\item Debug: alcuni ruoli sono accessibili solo dagli sviluppatori e sono marcati come \emph{debug}
-	\item Enabled: È possibile disattivare alcuni ruoli con questa proprietà
+	\item Enabled: È possibile disattivare alcuni ruoli tramite questa proprietà
 	\item Chat: alcuni ruoli hanno dei canali di comunicazione dedicati
 	\item Gen*: parametri aggiuntivi per la generazione automatica dei ruoli, come numero minimo e massimo di occorrenze del ruolo, probabilità, ecc...
 \end{itemize}
@@ -18,7 +18,7 @@ I ruoli che normalmente vengono usati in una partita di Lupus in Tabula sono:
 
 \role{Lupo}{Lupo}{Cattivo}{Lupi}{100}{no}{sì}{Lupi}{Durante la notte i \emph{lupi} votano chi eliminare, se almeno il 50\%+1 dei \emph{lupi} vivi votano la stessa persona, questa è una candidata a morire}
 
-\role{Guardia}{Guardia}{Buono}{Contadini}{10000}{no}{si}{}{Durante la notte la \emph{guardia} può scegliere di proteggere una persona, se i \emph{lupi} quella notte decidessero di ucciderla, essa non muore}
+\role{Guardia}{Guardia}{Buono}{Contadini}{10000}{no}{si}{}{Durante la notte la \emph{guardia} può scegliere di proteggere una persona, se i \emph{lupi} quella notte decidessero di ucciderla, questa non muore}
 
 \role{Medium}{Medium}{Buono}{Contadini}{150}{no}{si}{}{Il \emph{medium} durante la notte può scegliere di guardare un giocatore morto, lui saprà se quel giocatore aveva un mana buono o cattivo}
 
@@ -34,4 +34,4 @@ I ruoli che normalmente vengono usati in una partita di Lupus in Tabula sono:
 
 \role{Pastore}{Pastore}{Buono}{Contadini}{50}{sì}{si}{}{I \emph{pastori} possono scegliere di sacrificare delle pecore per salvare dei giocatori dalle grinfie dei lupi}
 
-\role{Sindaco}{Sindaco}{Buono}{Contadini}{10000}{no}{si}{}{Il \emph{sindaco} è un contadino che non può essere messo al rogo nella votazione diurn}
+\role{Sindaco}{Sindaco}{Buono}{Contadini}{10000}{no}{si}{}{Il \emph{sindaco} è un contadino che non può essere messo al rogo nella votazione diurna}
